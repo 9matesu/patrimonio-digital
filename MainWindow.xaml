@@ -1,0 +1,32 @@
+﻿<Window x:Class="patrimonio_digital.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:patrimonio_digital"
+        mc:Ignorable="d"
+        Title="Patrimonio Digital" Height="450" Width="800">
+    
+    <!-- Caixa de busca de itens -->
+    <Grid Margin="10,10,10,10">
+        <TextBlock HorizontalAlignment="Left" Height="53" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" FontSize="36" FontFamily="Bahnschrift" FontStretch="Condensed"><Run Language="pt-br" Text="Acervo Major Novaes"/></TextBlock>
+        <TextBox
+    x:Name="txtBusca"
+    HorizontalAlignment="Center"
+    Height="58"
+    Margin="0,77,0,0"
+    TextWrapping="Wrap"
+    Text="Procure por itens, palavras-chave, data..."
+           VerticalContentAlignment="Center"
+           Padding="10,5,10,5"
+           TextDecorations="Underline"
+           Cursor="Hand"
+    Foreground="Gray"
+    VerticalAlignment="Top"
+    Width="722"
+    GotFocus="txtBusca_GotFocus"
+    LostFocus="txtBusca_LostFocus" />
+        
+        <Button Content="Login" HorizontalAlignment="Left" Height="23" Margin="661,10,0,0" VerticalAlignment="Top" Width="119" Click="Button_Click" Background="#0b508c" Foreground="White" />
+    </Grid>
+</Window>
