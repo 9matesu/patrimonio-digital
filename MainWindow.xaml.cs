@@ -26,27 +26,17 @@ namespace patrimonio_digital
 
         }
 
-
-        // GotFocus e LostFocus: funções para tirar o texto da Box quando o usuário clica
-        private void txtBusca_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtBusca.Text == "Procure por itens, palavras-chave, data...")
-            {
-                txtBusca.Text = "";
-                txtBusca.Foreground = Brushes.Black;
-            }
-        }
-
-        private void txtBusca_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtBusca.Text))
-            {
-                txtBusca.Text = "Procure por itens, palavras-chave, data...";
-                txtBusca.Foreground = Brushes.Gray;
-            }
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+ 
+        }
+
+        private void btn_Catalogar_Click(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private void FrameLogin_Navigated(object sender, NavigationEventArgs e)
         {
 
         }

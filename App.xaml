@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:patrimonio_digital"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source ="Theme/MenuButtonTheme.xaml"></ResourceDictionary>
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
          
     </Application.Resources>
 </Application>
