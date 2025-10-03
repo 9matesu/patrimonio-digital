@@ -10,11 +10,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Fonts\" />
+    <None Remove="Fonts\OpenSans\OpenSans-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Images\" />
     <Folder Include="MVVM\Model\" />
-    <Folder Include="MVVM\ViewModel\" />
-    <Folder Include="MVVM\View\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\OpenSans-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
