@@ -14,10 +14,12 @@ namespace patrimonio_digital.MVVM.ViewModel
     public class MainViewModel
     {
         public ICommand AbrirJanelaCommand { get; }
+        public ICommand FecharJanelaCommand { get; }
 
         public MainViewModel()
         {
             AbrirJanelaCommand = new RelayCommand(AbrirJanela);
+            FecharJanelaCommand = new RelayCommand(FecharJanela);
         }
 
         private void AbrirJanela(object parameter)
@@ -35,6 +37,17 @@ namespace patrimonio_digital.MVVM.ViewModel
                 janela?.Show();
             }
         }
+
+        private void FecharJanela(object parameter)
+        {
+            var janela = Application.Current.Windows
+                .OfType<Window>()
+                .FirstOrDefault(w => w.DataContext == this);
+
+            janela?.Close();
+        }
+           
     }
 
 }
+

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:patrimonio_digital"
              StartupUri="MainWindow.xaml">
+    
     <Application.Resources>
 
         <ResourceDictionary>
@@ -10,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source ="Theme/MenuButtonTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source ="Theme/Fonts.xaml"></ResourceDictionary>
+                <ResourceDictionary Source ="Theme/ExitButtonTheme.xaml"></ResourceDictionary>
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

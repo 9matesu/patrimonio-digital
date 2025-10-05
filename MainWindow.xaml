@@ -23,11 +23,12 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="175"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -43,9 +44,15 @@
                 <RadioButton x:Name="btnExportar" Content="Exportar Lista" Tag="Download" Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
                 
             </StackPanel>
+            
+            <!-- botão de saída -->
+            <StackPanel Grid.Column="3">
+                <Button Content="" Command="{Binding FecharJanelaCommand}" Template="{StaticResource ExitButton}" Width="25" Height="25" HorizontalAlignment="Right"></Button>
 
-            <StackPanel Grid.Column="2">
-                <TextBox x:Name="CaixaPesquisa" Tag="Pesquisar usuário" Margin="10 10 0 0" Padding="20" BorderThickness="1,1,1,1"/>
+            </StackPanel>
+            
+            <StackPanel Grid.Column="1">
+                <TextBox x:Name="CaixaPesquisa" Tag="Pesquisar usuário" Padding="20" BorderThickness="1,1,1,1" Width="700" Margin="10 0 10 0" HorizontalAlignment="Center"/>
 
             </StackPanel>
 
