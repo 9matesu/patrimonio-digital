@@ -7,16 +7,14 @@
         xmlns:vm="clr-namespace:patrimonio_digital.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="Patrimonio Digital" Height="600" Width="920" ResizeMode="NoResize"
-        WindowStyle="None"
-        Background="Transparent"
-        AllowsTransparency="True"
+        Background="#0b508c"
         >
 
     <Window.DataContext>
         <vm:MainViewModel />
     </Window.DataContext>
-    
-    <Border Background="#f2f2f2" CornerRadius="20">
+
+    <Border Background="#f2f2f2" CornerRadius="0,0,20,20">
 
 
         <Grid Margin="10,10,10,10">
@@ -32,28 +30,33 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0" Grid.RowSpan="2" CornerRadius="20" Background="#ffffff"/>
+            <Border Grid.Row="0" Grid.RowSpan="2" CornerRadius="20 0 0 20" Background="#ffffff"/>
                
             <TextBlock HorizontalAlignment="Center" Height="auto" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" FontSize="15" FontFamily="{StaticResource OpenSans}" FontStretch="Condensed" Margin="1,1,1,1"><Run Language="pt-br" Text="Acervo Museu Major Novaes"/></TextBlock>
             
             <StackPanel Grid.Row="1">
 
                 <RadioButton x:Name="btnCatalogo" Command="{Binding AbrirJanelaCommand}" CommandParameter="Catalogar" Content= "Catálogo" Tag="Book"  Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
-                <RadioButton x:Name="btnUsuarios" Command="{Binding AbrirJanelaCommand}" CommandParameter="Usuarios" Content= "Usuários" Tag="User" Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
+                <RadioButton x:Name="btnUsuarios" Command="{Binding AbrirJanelaCommand}" CommandParameter="Usuarios" Content= " Usuários" Tag="User" Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
                 <RadioButton x:Name="btnAuditoria" Command="{Binding AbrirJanelaCommand}" CommandParameter="Auditoria" Content= "Auditoria" Tag="Search" Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
                 <RadioButton x:Name="btnExportar" Content="Exportar Lista" Tag="Download" Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
                 
             </StackPanel>
             
-            <!-- botão de saída -->
+            <!-- botão de saída 
             <StackPanel Grid.Column="3">
-                <Button Content="" Command="{Binding FecharJanelaCommand}" Template="{StaticResource ExitButton}" Width="25" Height="25" HorizontalAlignment="Right"></Button>
-
+                <Button Content="" Command="{Binding FecharJanelaCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Template="{StaticResource ExitButton}" Width="25" Height="25" HorizontalAlignment="Right"></Button>
+                   
             </StackPanel>
+             -->
             
             <StackPanel Grid.Column="1">
                 <TextBox x:Name="CaixaPesquisa" Tag="Pesquisar usuário" Padding="20" BorderThickness="1,1,1,1" Width="700" Margin="10 0 10 0" HorizontalAlignment="Center"/>
 
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="2">
+                <ListBox Margin="10 10 10 10" Height="300" ItemsSource="{Binding Itens}" DisplayMemberPath="Nome" />
             </StackPanel>
 
             

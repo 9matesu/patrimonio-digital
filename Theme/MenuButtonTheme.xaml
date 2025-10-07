@@ -3,8 +3,14 @@
                     xmlns:fa="http://schemas.fontawesome.io/icons/"
                     xmlns:utils="clr-namespace:patrimonio_digital.Utils">
 
-    <utils:StringToIcon x:Key="IconConverter"/>
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Fonts.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <utils:StringToIcon x:Key="IconConverter"/>
+        
+    
 
     <Style BasedOn="{StaticResource {x:Type ToggleButton}}"
            TargetType="{x:Type RadioButton}"
@@ -21,15 +27,17 @@
 
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
 
-                                <fa:FontAwesome Margin="0 2 0 0" Foreground="{TemplateBinding Foreground}" Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag, Converter={StaticResource IconConverter}}"/>
+                                <fa:FontAwesome FontSize="20" Margin="2 2 2 2" Foreground="{TemplateBinding Foreground}" Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag, Converter={StaticResource IconConverter}}"/>
 
                                 <TextBlock Text="{TemplateBinding Property=Content}"
                                    VerticalAlignment="Center"
-                                       Margin="10,0,0,0"/>
+                                       Margin="10,0,0,0"
+                                        FontFamily="{StaticResource OpenSans}"  />
                                 
                         </StackPanel>
 
                         </Grid>
+                    
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

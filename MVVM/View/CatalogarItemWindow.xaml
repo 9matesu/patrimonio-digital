@@ -7,16 +7,15 @@
         xmlns:vm="clr-namespace:patrimonio_digital.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="Adicionar item" Height="450" Width="600"
-        WindowStyle="None"
-        Background="Transparent"
-        AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+        Background="#0b508c"
+        WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
 
     <Window.DataContext>
         <vm:MainViewModel />
     </Window.DataContext>
 
 
-    <Border Background="#f2f2f2" CornerRadius="20">
+    <Border Background="#f2f2f2" CornerRadius="0,0,20,20">
 
         <Grid Margin="10 10 10 10">
 
@@ -32,16 +31,16 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0">
-                <Label Content="Registro de Itens"></Label>
+                <Label FontSize="18" VerticalAlignment="Center" Content="Registro de Itens"></Label>
 
             </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
-                <Button Content="" Command="{Binding FecharJanelaCommand}" Template="{StaticResource ExitButton}" Width="25" Height="25" HorizontalAlignment="Right"></Button>
-            </StackPanel>
+            <!-- <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+                <Button Content="" Command="{Binding FecharJanelaCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Template="{StaticResource ExitButton}" Width="25" Height="25" HorizontalAlignment="Right"></Button>
+            </StackPanel> -->
 
             <StackPanel Grid.Row="1" Margin="0,0,5,0">
                 <Label Content="Nome" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
-                <TextBox Height="40"/>
+                <TextBox Text="{Binding NomeNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
 
 
                 <Label Content="Autor" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
@@ -71,7 +70,9 @@
             </StackPanel>
 
             <StackPanel Grid.Row="2" Grid.Column="2">
-                <Button Height="50"/>
+                <Button Content="Registrar" Background="CadetBlue" Width="Auto" Height="50" Margin="5 0 0 0"
+                        Command="{Binding RegistrarCommand}" 
+                        />
             </StackPanel>
 
         </Grid>
