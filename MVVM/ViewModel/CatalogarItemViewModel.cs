@@ -21,6 +21,18 @@ namespace patrimonio_digital.MVVM.ViewModel
             }
         }
 
+        private string _autorNovoItem;
+        public string AutorNovoItem
+        {
+            get => _autorNovoItem;
+            set
+            {
+                if (_autorNovoItem == value) return;
+                _autorNovoItem = value;
+                OnPropertyChanged(); // atualiza o evento
+            }
+        }
+
         public ObservableCollection<Item> Itens { get; } // lista de itens (por enquanto só tem o campo nome)
 
         public ICommand RegistrarCommand { get; }
@@ -36,8 +48,9 @@ namespace patrimonio_digital.MVVM.ViewModel
         private void RegistrarItem()
         {
             if (string.IsNullOrWhiteSpace(NomeNovoItem)) return;
-            Itens.Add(new Item { Nome = NomeNovoItem });
+            Itens.Add(new Item { Nome = NomeNovoItem, Autor = AutorNovoItem });
             NomeNovoItem = string.Empty;
+            AutorNovoItem = string.Empty;
         }
     }
 }

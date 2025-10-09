@@ -39,12 +39,12 @@
             </StackPanel> -->
 
             <StackPanel Grid.Row="1" Margin="0,0,5,0">
-                <Label Content="Nome" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
+                <Label Content="Título" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
                 <TextBox Text="{Binding NomeNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
 
 
                 <Label Content="Autor" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
-                <TextBox Height="40"/>
+                <TextBox Text="{Binding AutorNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
 
                 <Label Content="Data" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
                 <TextBox Height="40"/>
@@ -70,7 +70,7 @@
             </StackPanel>
 
             <StackPanel Grid.Row="2" Grid.Column="2">
-                <Button Content="Registrar" Background="CadetBlue" Width="Auto" Height="50" Margin="5 0 0 0"
+                <Button Content="Registrar" Foreground= "White" Background="#0b508c" Width="Auto" Height="50" Margin="5 0 0 0"
                         Command="{Binding RegistrarCommand}" 
                         />
             </StackPanel>

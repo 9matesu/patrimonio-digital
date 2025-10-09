@@ -12,6 +12,7 @@ namespace patrimonio_digital.MVVM.Model
     public class Item
     {
         public string Nome { get; set; }
+        public string Autor { get; set; }
 
     }
 }

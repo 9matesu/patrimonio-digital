@@ -32,7 +32,7 @@
                                 <TextBlock Text="{TemplateBinding Property=Content}"
                                    VerticalAlignment="Center"
                                        Margin="10,0,0,0"
-                                        FontFamily="{StaticResource OpenSans}"  />
+                                        FontFamily="{StaticResource OpenSans}" FontWeight="Light"  />
                                 
                         </StackPanel>
 
@@ -49,8 +49,8 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value = "#0b508c"/>
-                <Setter Property="Foreground" Value ="#fff"/>
+                <Setter Property="Background" Value = "#ebf6ff"/>
+                <Setter Property="Foreground" Value ="Blue"/>
             </Trigger>
             
             

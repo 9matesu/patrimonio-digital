@@ -14,11 +14,18 @@
         <vm:MainViewModel />
     </Window.DataContext>
 
+    <!-- Background principal -->
     <Border Background="#f2f2f2" CornerRadius="0,0,20,20">
 
-
         <Grid Margin="10,10,10,10">
-
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="4"
+                      ShadowDepth="0.01"
+                      Direction="100"
+                      Opacity="0.3"
+                      Color="#80000000"/>
+            </Grid.Effect>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="175"/>
                 <ColumnDefinition Width="*"/>
@@ -27,20 +34,60 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <Border Grid.Row="0" Grid.RowSpan="2" CornerRadius="20 0 0 20" Background="#ffffff"/>
-               
-            <TextBlock HorizontalAlignment="Center" Height="auto" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" FontSize="15" FontFamily="{StaticResource OpenSans}" FontStretch="Condensed" Margin="1,1,1,1"><Run Language="pt-br" Text="Acervo Museu Major Novaes"/></TextBlock>
+                
+            <!-- Título -->
+            <Border Grid.Row="0" Grid.RowSpan="2" 
+                    CornerRadius="20 0 0 20" 
+                    Background="#ffffff"/>
             
+            
+
+            <TextBlock HorizontalAlignment="Center" 
+                       Height="auto" TextWrapping="Wrap" 
+                       VerticalAlignment="Center" Width="auto"
+                       FontSize="15" 
+                       FontFamily="{StaticResource OpenSans}" 
+                       FontStretch="Condensed" 
+                       FontWeight="Thin" 
+                       Margin="1,1,1,1"
+                       Text="Acervo Museu Major Novaes"/>
+           
+            
+            <!-- Sidebar -->
+
             <StackPanel Grid.Row="1">
 
-                <RadioButton x:Name="btnCatalogo" Command="{Binding AbrirJanelaCommand}" CommandParameter="Catalogar" Content= "Catálogo" Tag="Book"  Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
-                <RadioButton x:Name="btnUsuarios" Command="{Binding AbrirJanelaCommand}" CommandParameter="Usuarios" Content= " Usuários" Tag="User" Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
-                <RadioButton x:Name="btnAuditoria" Command="{Binding AbrirJanelaCommand}" CommandParameter="Auditoria" Content= "Auditoria" Tag="Search" Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
-                <RadioButton x:Name="btnExportar" Content="Exportar Lista" Tag="Download" Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
+                <Rectangle VerticalAlignment="Top" 
+                    Fill="#f2f2f2" Width="Auto" Height="3"/>
                 
+                <RadioButton x:Name="btnCatalogo" 
+                             Command="{Binding AbrirJanelaCommand}" 
+                             CommandParameter="Catalogar" 
+                             Content= "Catálogo" Tag="Book"  
+                             Height="50" FontSize="14" 
+                             Style="{StaticResource MenuButtonTheme}"/>
+                
+                <RadioButton x:Name="btnUsuarios" 
+                             Command="{Binding AbrirJanelaCommand}" 
+                             CommandParameter="Usuarios" 
+                             Content= " Usuários" Tag="User" 
+                             Height="50" FontSize="14" 
+                             Style="{StaticResource MenuButtonTheme}"/>
+                
+                <RadioButton x:Name="btnAuditoria" 
+                             Command="{Binding AbrirJanelaCommand}" 
+                             CommandParameter="Auditoria" 
+                             Content= "Auditoria" Tag="Search" 
+                             Height="50" FontSize="14" 
+                             Style="{StaticResource MenuButtonTheme}"/>
+
+                <RadioButton x:Name="btnExportar" 
+                             Content="Exportar Lista" 
+                             Tag="Download" 
+                             Height="50" FontSize="14" 
+                             Style="{StaticResource MenuButtonTheme}"/>
             </StackPanel>
             
             <!-- botão de saída 
@@ -49,17 +96,47 @@
                    
             </StackPanel>
              -->
+
             
+            <!-- Caixa de pesquisa -->
             <StackPanel Grid.Column="1">
-                <TextBox x:Name="CaixaPesquisa" Tag="Pesquisar usuário" Padding="20" BorderThickness="1,1,1,1" Width="700" Margin="10 0 10 0" HorizontalAlignment="Center"/>
-
+            <Border Margin="10 0 0 10"
+            CornerRadius="20"
+            Background="White"
+            HorizontalAlignment="Center"
+            Padding="10">
+                 <TextBox x:Name="CaixaPesquisa"
+                 Tag="Pesquisar usuário"
+                 Padding="10 0"
+                 Width="700"
+                 Height="30"
+                 Background="White"
+                 BorderThickness="0"
+                 VerticalAlignment="Bottom"
+                 FontSize="16"
+                 FontFamily="{StaticResource OpenSans}"/>
+                </Border>
             </StackPanel>
 
+
+            <!-- listbox provisoria -->
             <StackPanel Grid.Column="1" Grid.Row="2">
-                <ListBox Margin="10 10 10 10" Height="300" ItemsSource="{Binding Itens}" DisplayMemberPath="Nome" />
+                <ListBox Margin="10"
+             Width="700"
+             Height="300"
+             ItemsSource="{Binding Itens}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5">
+                                <TextBlock Text="{Binding Nome, StringFormat='Titulo: {0}'}" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="{Binding Autor, StringFormat='Autor: {0}'}" FontSize="12" Foreground="Gray"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
 
-            
+
         </Grid>
 
         
