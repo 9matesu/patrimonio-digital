@@ -2,7 +2,7 @@
 
 ## Descrição
 **Patrimônio Digital** é um **Sistema de Gerenciamento de Acervos** sendo desenvolvido em C# com **WPF**, voltado para a catalogação, organização e controle de itens do Museu Major Novaes. 
-O projeto é parte da curricularização da disciplina de Análise e Desenvolvimento de Sistemas, focando em conceitos de **orientação a objetos**, **interfaces gráficas** e **persistência simples** sem o uso de banco de dados.
+O projeto é parte da curricularização do curso de Análise e Desenvolvimento de Sistemas, focando em conceitos de **orientação a objetos**, **interfaces gráficas** e **persistência simples** sem o uso de banco de dados.
 
 ## Funcionalidades
 - Cadastro de itens do acervo inclui:
