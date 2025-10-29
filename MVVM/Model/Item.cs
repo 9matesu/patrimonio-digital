@@ -18,6 +18,7 @@ namespace patrimonio_digital.MVVM.Model
         public string Tipo { get; set; }
         public string EstadoCons { get; set; }
         public string SetorFisico { get; set; }
+        public string PastaDocumentos { get; set; }
 
 
     }
