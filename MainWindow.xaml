@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:patrimonio_digital"
         xmlns:vm="clr-namespace:patrimonio_digital.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="Patrimonio Digital" Height="700" Width="920" ResizeMode="NoResize"
+        Title="Patrimonio Digital" Height="600" Width="920" ResizeMode="NoResize"
         Background="#0b508c"
         >
 
@@ -15,14 +15,14 @@
     </Window.DataContext>
 
     <!-- Background principal -->
-    <Border Background="#f2f2f2" CornerRadius="0">
+    <Border Background="#50577A" CornerRadius="0">
 
-        <Grid Margin="2">
+        <Grid Margin="10">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="4"
-                      ShadowDepth="0.01"
+                      ShadowDepth="0.02"
                       Direction="100"
-                      Opacity="0.3"
+                      Opacity="0.4"
                       Color="#80000000"/>
             </Grid.Effect>
             
@@ -40,7 +40,7 @@
             <!-- Título -->
             <Border Grid.Row="0" Grid.RowSpan="2" 
                     CornerRadius="0" 
-                    Background="#ffffff"/>
+                    Background="#6B728E"/>
             
             
 
@@ -52,7 +52,8 @@
                        FontStretch="Condensed" 
                        FontWeight="Thin" 
                        Margin="1,1,1,1"
-                       Text="Acervo Museu Major Novaes"/>
+                       Text="Acervo Museu Major Novaes"
+                       Foreground="White"/>
            
             
             <!-- Sidebar -->
@@ -60,7 +61,7 @@
             <StackPanel Grid.Row="1">
 
                 <Rectangle VerticalAlignment="Top" 
-                    Fill="#f2f2f2" Width="Auto" Height="3"/>
+                    Fill="#50577A" Width="Auto" Height="3"/>
                 
                 <RadioButton x:Name="btnCatalogo" 
                              Command="{Binding AbrirJanelaCommand}" 
@@ -100,9 +101,9 @@
             
             <!-- Caixa de pesquisa -->
             <StackPanel Grid.Column="1">
-            <Border Margin="0"
-            CornerRadius="0"
-            Background="White"
+            <Border Margin="10,0,10,0"
+            CornerRadius="20"
+            Background="#6B728E"
             HorizontalAlignment="Center"
             Padding="10">
                  <TextBox x:Name="CaixaPesquisa"
@@ -110,7 +111,7 @@
                  Padding="10 0"
                  Width="700"
                  Height="30"
-                 Background="White"
+                 Background="#6B728E"
                  BorderThickness="0"
                  VerticalAlignment="Bottom"
                  FontSize="16"
@@ -120,15 +121,24 @@
 
 
             <!-- listbox provisoria -->
+            
             <StackPanel Grid.Column="1" Grid.Row="2">
+                <Border Margin="10"
+            CornerRadius="20"
+            Background="#6B728E"
+            HorizontalAlignment="Center"
+            Padding="0">
+
                 <ListBox Margin="10"
              Width="700"
              Height="500"
              HorizontalAlignment="Center"
+                         
+                         Background="#6B728E"
              ItemsSource="{Binding Itens}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="#ccc" BorderThickness="1" Padding="10" Margin="5" CornerRadius="5">
+                            <Border Padding="10" Margin="5" CornerRadius="5">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -138,20 +148,20 @@
                                     </Grid.ColumnDefinitions>
 
                                     <StackPanel Grid.Column="0" Width="600" HorizontalAlignment="Center">
-                                        <TextBlock Text="{Binding Nome, StringFormat='Título: {0}'}" FontWeight="Bold" FontSize="14"/>
-                                        <TextBlock Text="{Binding Autor, StringFormat='Autoria: {0}'}" FontSize="12" Foreground="Gray"/>
-                                        <TextBlock Text="{Binding Data, StringFormat='Data: {0}'}" FontSize="12" Foreground="Gray"/>
-                                        <TextBlock Text="{Binding Origem, StringFormat='Origem: {0}'}" FontSize="12" Foreground="Gray"/>
-                                        <TextBlock Text="{Binding Tipo, StringFormat='Tipo: {0}'}" FontSize="12" Foreground="Gray"/>
-                                        <TextBlock Text="{Binding EstadoCons, StringFormat='Estado de Conservação: {0}'}" FontSize="12" Foreground="Gray"/>
-                                        <TextBlock Text="{Binding SetorFisico, StringFormat='Setor Físico: {0}'}" FontSize="12" Foreground="Gray"/>
+                                        <TextBlock Text="{Binding Nome}" FontWeight="Bold" FontSize="14" Foreground="White" FontFamily="Open Sans"/>
+                                            <TextBlock Text="{Binding Autor, StringFormat='Autoria: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
+                                            <TextBlock Text="{Binding Data, StringFormat='Data: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
+                                            <TextBlock Text="{Binding Origem, StringFormat='Origem: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
+                                            <TextBlock Text="{Binding Tipo, StringFormat='Tipo: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
+                                            <TextBlock Text="{Binding EstadoCons, StringFormat='Estado de Conservação: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
+                                            <TextBlock Text="{Binding SetorFisico, StringFormat='Setor Físico: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
                                     </StackPanel>
 
                                     <Button Grid.Column="1"
                                 Content="🗑"
                                 Command="{Binding DataContext.ExcluirItemCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
                                 CommandParameter="{Binding}"
-                                Background="Tomato"
+                                Background="Transparent"
                                 Foreground="White"
                                 FontWeight="Bold"
                                 Width="30"
@@ -165,6 +175,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                </Border>
             </StackPanel>
 
 
