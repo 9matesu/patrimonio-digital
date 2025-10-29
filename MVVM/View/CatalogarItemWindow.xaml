@@ -15,6 +15,7 @@
     </Window.DataContext>
 
 
+    
     <Border Background="#f2f2f2" CornerRadius="0,0,20,20">
 
         <Grid Margin="10 10 10 10">
@@ -43,14 +44,14 @@
                 <TextBox Text="{Binding NomeNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
 
 
-                <Label Content="Autor" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
+                <Label Content="Autoria" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
                 <TextBox Text="{Binding AutorNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
 
                 <Label Content="Data" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
-                <TextBox Height="40"/>
+                <TextBox Text="{Binding DataNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
 
                 <Label Content="Origem" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
-                <TextBox Height="40"/>
+                <TextBox Text="{Binding OrigemNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
 
 
 
@@ -59,13 +60,14 @@
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="5,0,0,0" Grid.ColumnSpan="2">
 
                 <Label Content="Tipo" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
-                <ComboBox Height="40"/>
+                <ComboBox ItemsSource="{Binding Tipo}" SelectedItem="{Binding TipoNovoItem, Mode=TwoWay}" Height="40"/>
 
                 <Label Content="Estado de Conservação" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
-                <ComboBox Height="40"/>
+                <ComboBox ItemsSource="{Binding EstadoCons}" SelectedItem="{Binding EstadoConsNovoItem, Mode=TwoWay}" Height="40"/>
 
                 <Label Content="Setor Físico" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
-                <ComboBox Height="40"/>
+                <TextBox Text="{Binding SetorFisicoNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
+
 
             </StackPanel>
 
