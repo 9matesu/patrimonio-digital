@@ -1,18 +1,29 @@
 <Window x:Class="patrimonio_digital.MVVM.View.EditorDocumentoView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Editor de Documento" Height="500" Width="800">
-    <DockPanel>
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
-            <Button x:Name="AnteriorButton" Content="Anterior" Margin="2"/>
-            <Button x:Name="SalvarButton" Content="Salvar" Margin="2"/>
-            <Button x:Name="ProximaButton" Content="Próxima" Margin="2"/>
-            <TextBlock Text="{Binding Pagina}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+        Title="Editor de Documento"
+        Width="500" Height="600"
+        Background="#121212"
+        WindowStartupLocation="CenterScreen">
+
+    <DockPanel Background="#121212">
+        <StackPanel Background="#121212" DockPanel.Dock="Top" Orientation="Horizontal" Margin="5">
+            <Button Content="Anterior" Command="{Binding AnteriorCommand}" Margin="2"/>
+            <Button Content="Salvar" Command="{Binding SalvarCommand}" Margin="2"/>
+            <Button Content="Proxima" Command="{Binding ProximaCommand}" Margin="2" Click="Button_Click"/>
+            <TextBlock Foreground="White" Text="{Binding Pagina}" VerticalAlignment="Center" Margin="10,0,0,0"/>
         </StackPanel>
 
-        <RichTextBox x:Name="EditorRTF"
-                     VerticalScrollBarVisibility="Auto"
-                     HorizontalScrollBarVisibility="Auto"
-                     FontSize="14"/>
+        <Border Background="#3f3f3f" CornerRadius="20" Margin="10">
+        <TextBox Background="#3f3f3f" Foreground="White" Text="{Binding Conteudo, UpdateSourceTrigger=PropertyChanged}"
+                 AcceptsReturn="True"
+                 AcceptsTab="True"
+                 VerticalScrollBarVisibility="Auto"
+                 HorizontalScrollBarVisibility="Auto"
+                 FontSize="14"
+                 BorderBrush="#3f3f3f"
+                 Margin="10" TextChanged="TextBox_TextChanged"/>
+        </Border>
+        
     </DockPanel>
 </Window>

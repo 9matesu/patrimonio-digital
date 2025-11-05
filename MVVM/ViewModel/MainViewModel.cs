@@ -2,15 +2,11 @@
 using patrimonio_digital.MVVM.Model;
 using patrimonio_digital.MVVM.View;
 using patrimonio_digital.Utils;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
-
 
 namespace patrimonio_digital.MVVM.ViewModel
 {
@@ -18,29 +14,64 @@ namespace patrimonio_digital.MVVM.ViewModel
     {
         public ICommand AbrirJanelaCommand { get; }
         public ICommand FecharJanelaCommand { get; }
-        public ICommand ExcluirItemCommand { get; } // interface para apagar item da lista (provisorio?)
+        public ICommand ExcluirItemCommand { get; }
+        public ICommand AbrirEditorCommand { get; }
 
-        //criação da lista primitiva p exibição de teste
-        public ObservableCollection<Item> Itens { get; } = new ObservableCollection<Item>();
+        private string textoPesquisa;
+        public string TextoPesquisa
+        {
+            get => textoPesquisa;
+            set
+            {
+                if (textoPesquisa != value)
+                {
+                    textoPesquisa = value;
+                    OnPropertyChanged();
+                    ItensView.Refresh(); // atualiza a filtragem ao digitar
+                }
+            }
+        }
 
+        public ObservableCollection<Item> Itens { get; }
+        public ICollectionView ItensView { get; }
 
         public MainViewModel()
         {
             AbrirJanelaCommand = new RelayCommand(AbrirJanela);
             FecharJanelaCommand = new RelayCommand(FecharJanela);
-            Itens = ItemStorage.Carregar(); // carrega do armazenamento permanente
-            ExcluirItemCommand = new RelayCommand(ExcluirItem); // apagar item
+            ExcluirItemCommand = new RelayCommand(ExcluirItem);
+            AbrirEditorCommand = new RelayCommand(AbrirEditor);
+
+            Itens = ItemStorage.Carregar();
+            ItensView = CollectionViewSource.GetDefaultView(Itens);
+            ItensView.Filter = FiltrarItens;
         }
 
-        // funções para abrir janelas baseado nas tags de cada botão
-        // usa-se: "tag" = new ArquivoJanela
+        private bool FiltrarItens(object obj)
+        {
+            if (obj is not Item item) return false;
+
+            if (string.IsNullOrWhiteSpace(TextoPesquisa))
+                return true;
+
+            string termo = TextoPesquisa.Trim().ToLower();
+
+            return (item.Nome?.ToLower().Contains(termo) == true) ||
+                   (item.Autor?.ToLower().Contains(termo) == true) ||
+                   (item.Origem?.ToLower().Contains(termo) == true) ||
+                   (item.Tipo?.ToLower().Contains(termo) == true) ||
+                   (item.Data?.ToLower().Contains(termo) == true) ||
+                   (item.EstadoCons?.ToLower().Contains(termo) == true) ||
+                   (item.SetorFisico?.ToLower().Contains(termo) == true);
+        }
+
         private void AbrirJanela(object parameter)
         {
             if (parameter is string tipoJanela)
             {
                 Window janela = tipoJanela switch
                 {
-                    "Catalogar" => new CatalogarItemWindow() { DataContext = new CatalogarItemViewModel(Itens) },
+                    "Catalogar" => new CatalogarItemWindow { DataContext = new CatalogarItemViewModel(Itens) },
                     "Auditoria" => new Auditoria(),
                     "Usuarios" => new Usuarios(),
                     "Login" => new Login(),
@@ -51,21 +82,18 @@ namespace patrimonio_digital.MVVM.ViewModel
             }
         }
 
-        //função fechar janela -- sem uso
         private void FecharJanela(object parameter)
         {
             if (parameter is Window janela)
-            {
                 janela.Close();
-            }
         }
 
-        private void ExcluirItem(object parametro)
+        private void ExcluirItem(object parameter)
         {
-            if (parametro is Item item && Itens.Contains(item))
+            if (parameter is Item item && Itens.Contains(item))
             {
                 var resultado = MessageBox.Show(
-                    $"Tem certeza que deseja excluir o item\"{item.Nome}\"?",
+                    $"Tem certeza que deseja excluir o item \"{item.Nome}\"?",
                     "Confirmar exclusão",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning
@@ -79,7 +107,13 @@ namespace patrimonio_digital.MVVM.ViewModel
             }
         }
 
+        private void AbrirEditor(object parameter)
+        {
+            if (parameter is Item item)
+            {
+                var editor = new EditorDocumentoView(item);
+                editor.ShowDialog();
+            }
+        }
     }
-
 }
-

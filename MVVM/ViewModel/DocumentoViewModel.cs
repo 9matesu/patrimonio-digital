@@ -1,54 +1,75 @@
 ﻿using patrimonio_digital.MVVM.Model;
-using System;
+using patrimonio_digital.Core;
 using System.ComponentModel;
-using System.IO;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
+using System.IO;
 
 namespace patrimonio_digital.MVVM.ViewModel
 {
     public class DocumentoViewModel : INotifyPropertyChanged
     {
         private Documento documento;
+        private string conteudo;
+
+        public string Conteudo
+        {
+            get => conteudo;
+            set { conteudo = value; OnPropertyChanged(); }
+        }
 
         public string Pagina => $"Página {documento.PaginaAtual}";
 
-        public ICommand SalvarCommand { get; }
-        public ICommand ProximaCommand { get; }
-        public ICommand AnteriorCommand { get; }
+        public RelayCommand SalvarCommand { get; }
+        public RelayCommand ProximaCommand { get; }
+        public RelayCommand AnteriorCommand { get; }
 
         public DocumentoViewModel(Item item)
         {
+            if (item == null)
+                throw new System.ArgumentNullException(nameof(item), "O item não pode ser nulo.");
+
+            string pastaBase = Path.Combine(
+                System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop),
+                "Patrimonio Digital",
+                "Documentos",
+                item.Nome ?? "ItemSemNome"
+            );
+
             documento = new Documento
             {
                 Item = item,
-                Pasta = item.PastaDocumentos,
+                Pasta = pastaBase,
                 PaginaAtual = 1
             };
 
             if (!Directory.Exists(documento.Pasta))
                 Directory.CreateDirectory(documento.Pasta);
 
+            Conteudo = documento.CarregarPagina(documento.PaginaAtual);
+
             SalvarCommand = new RelayCommand(_ => Salvar());
             ProximaCommand = new RelayCommand(_ => Proxima());
             AnteriorCommand = new RelayCommand(_ => Anterior());
         }
 
-        public string CarregarPagina() => documento.CarregarPagina(documento.PaginaAtual);
-        public void SalvarPagina(string rtf) => documento.SalvarPagina(rtf);
+        private void Salvar() => documento.SalvarPagina(Conteudo);
 
-        private void Salvar() { /* Será chamado pelo código-behind */ }
-
-        public void Proxima()
+        private void Proxima()
         {
+            documento.SalvarPagina(Conteudo);
             documento.ProximaPagina();
+            Conteudo = documento.CarregarPagina(documento.PaginaAtual);
             OnPropertyChanged(nameof(Pagina));
+
         }
 
-        public void Anterior()
+        private void Anterior()
         {
+            documento.SalvarPagina(Conteudo);
             documento.PaginaAnterior();
+            Conteudo = documento.CarregarPagina(documento.PaginaAtual);
             OnPropertyChanged(nameof(Pagina));
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -56,46 +77,5 @@ namespace patrimonio_digital.MVVM.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nome));
         }
-    }
-
-    public class RelayCommand : ICommand
-    {
-        private readonly Action<object> execute;
-        private readonly Func<object, bool> canExecute;
-
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
-        {
-            this.execute = execute;
-            this.canExecute = canExecute;
-        }
-
-        public bool CanExecute(object parameter) => canExecute == null || canExecute(parameter);
-        public void Execute(object parameter) => execute(parameter);
-        public event EventHandler CanExecuteChanged
-        {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
-        }
-    }
-
-    public class Documento
-    {
-        public Item Item { get; set; }
-        public string Pasta { get; set; }
-        public int PaginaAtual { get; set; } = 1;
-
-        private string NomeArquivo(int pagina)
-        {
-            string nomeBase = Item.Nome.Replace(" ", "_");
-            return Path.Combine(Pasta, $"{nomeBase}_Pagina{pagina}.rtf");
-        }
-
-        public void SalvarPagina(string rtf) => File.WriteAllText(NomeArquivo(PaginaAtual), rtf);
-
-        public string CarregarPagina(int pagina) =>
-            File.Exists(NomeArquivo(pagina)) ? File.ReadAllText(NomeArquivo(pagina)) : string.Empty;
-
-        public void ProximaPagina() => PaginaAtual++;
-        public void PaginaAnterior() { if (PaginaAtual > 1) PaginaAtual--; }
     }
 }

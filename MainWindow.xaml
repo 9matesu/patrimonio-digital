@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:patrimonio_digital"
         xmlns:vm="clr-namespace:patrimonio_digital.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="Patrimonio Digital" Height="600" Width="920" ResizeMode="NoResize"
-        Background="#0b508c"
+        Title="Patrimonio Digital" Height="600" Width="920"
+        Background="#0b508c" SizeToContent="WidthAndHeight"
         >
 
     <Window.DataContext>
@@ -15,7 +15,7 @@
     </Window.DataContext>
 
     <!-- Background principal -->
-    <Border Background="#50577A" CornerRadius="0">
+    <Border Background="#121212" CornerRadius="0">
 
         <Grid Margin="10">
             <Grid.Effect>
@@ -40,7 +40,7 @@
             <!-- Título -->
             <Border Grid.Row="0" Grid.RowSpan="2" 
                     CornerRadius="0" 
-                    Background="#6B728E"/>
+                    Background="#3f3f3f"/>
             
             
 
@@ -61,7 +61,7 @@
             <StackPanel Grid.Row="1">
 
                 <Rectangle VerticalAlignment="Top" 
-                    Fill="#50577A" Width="Auto" Height="3"/>
+                    Fill="#121212" Width="Auto" Height="3"/>
                 
                 <RadioButton x:Name="btnCatalogo" 
                              Command="{Binding AbrirJanelaCommand}" 
@@ -84,11 +84,6 @@
                              Height="50" FontSize="14" 
                              Style="{StaticResource MenuButtonTheme}"/>
 
-                <RadioButton x:Name="btnExportar" 
-                             Content="Exportar Lista" 
-                             Tag="Download" 
-                             Height="50" FontSize="14" 
-                             Style="{StaticResource MenuButtonTheme}"/>
             </StackPanel>
             
             <!-- botão de saída 
@@ -103,19 +98,22 @@
             <StackPanel Grid.Column="1">
             <Border Margin="10,0,10,0"
             CornerRadius="20"
-            Background="#6B728E"
+            Background="#3f3f3f"
             HorizontalAlignment="Center"
             Padding="10">
-                 <TextBox x:Name="CaixaPesquisa"
-                 Tag="Pesquisar usuário"
-                 Padding="10 0"
-                 Width="700"
-                 Height="30"
-                 Background="#6B728E"
-                 BorderThickness="0"
-                 VerticalAlignment="Bottom"
-                 FontSize="16"
-                 FontFamily="{StaticResource OpenSans}"/>
+
+                    <TextBox x:Name="CaixaPesquisa"
+                     Text="{Binding TextoPesquisa, UpdateSourceTrigger=PropertyChanged}"
+                     Padding="10 0"
+                     Width="700"
+                     Height="30"
+                     Background="#3f3f3f"
+                     BorderThickness="0"
+                     VerticalAlignment="Bottom"
+                     FontSize="16"
+                     Foreground="White"
+                     FontFamily="{StaticResource OpenSans}"/>
+
                 </Border>
             </StackPanel>
 
@@ -125,17 +123,17 @@
             <StackPanel Grid.Column="1" Grid.Row="2">
                 <Border Margin="10"
             CornerRadius="20"
-            Background="#6B728E"
+            Background="#3f3f3f"
             HorizontalAlignment="Center"
             Padding="0">
 
-                <ListBox Margin="10"
-             Width="700"
-             Height="500"
-             HorizontalAlignment="Center"
-                         
-                         Background="#6B728E"
-             ItemsSource="{Binding Itens}">
+                    <ListBox Margin="10"
+                     Width="700"
+                     Height="500"
+                     HorizontalAlignment="Center"
+                     Background="#3f3f3f"
+                     ItemsSource="{Binding ItensView}" BorderBrush="#FF3F3F3F">
+
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="10" Margin="5" CornerRadius="5">
@@ -147,8 +145,15 @@
                                         <!-- botão -->
                                     </Grid.ColumnDefinitions>
 
-                                    <StackPanel Grid.Column="0" Width="600" HorizontalAlignment="Center">
-                                        <TextBlock Text="{Binding Nome}" FontWeight="Bold" FontSize="14" Foreground="White" FontFamily="Open Sans"/>
+                                    <StackPanel  Grid.Column="0" Width="600" HorizontalAlignment="Center" Cursor="Hand">
+
+                                            <StackPanel.InputBindings>
+                                                <MouseBinding MouseAction="LeftClick"
+                                                 Command="{Binding DataContext.AbrirEditorCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                                 CommandParameter="{Binding}" />
+                                             </StackPanel.InputBindings>
+                                        
+                                            <TextBlock Text="{Binding Nome}" FontWeight="Bold" FontSize="14" Foreground="White" FontFamily="Open Sans"/>
                                             <TextBlock Text="{Binding Autor, StringFormat='Autoria: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
                                             <TextBlock Text="{Binding Data, StringFormat='Data: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
                                             <TextBlock Text="{Binding Origem, StringFormat='Origem: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
