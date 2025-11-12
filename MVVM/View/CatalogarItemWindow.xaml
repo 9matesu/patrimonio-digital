@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:patrimonio_digital.MVVM.View"
         xmlns:vm="clr-namespace:patrimonio_digital.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="Adicionar item" Height="720" Width="250"
+        Title="Adicionar item" Height="640" Width="250"
         Background="#121212"
-        WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight">
+        WindowStartupLocation="CenterScreen" ShowInTaskbar="True" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight">
 
     <Window.DataContext>
         <vm:MainViewModel />
@@ -21,11 +21,11 @@
         <Grid Margin="10 10 10 10">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -37,28 +37,28 @@
                 <Button Content="" Command="{Binding FecharJanelaCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Template="{StaticResource ExitButton}" Width="25" Height="25" HorizontalAlignment="Right"></Button>
             </StackPanel> -->
 
-            <StackPanel HorizontalAlignment="Center" Grid.Row="1" Margin="0,0,5,0">
-                <Label Foreground="White" Content="Título" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
-                <TextBox Foreground="White" Background="#3f3f3f" Text="{Binding NomeNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
+            <StackPanel HorizontalAlignment="Center" Grid.Row="1" Margin="0,0,0,0" Width="230">
+                <Label Foreground="White" Content="Título" FontSize="15" FontFamily="{StaticResource OpenSans}"/>
+                <TextBox Style="{StaticResource TextBoxTheme}" Text="{Binding NomeNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
 
 
-                <Label Foreground="White" Content="Autoria" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
-                <TextBox Foreground="White" Background="#3f3f3f" Text="{Binding AutorNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
+                <Label Foreground="White" Content="Autoria" FontSize="15" FontFamily="{StaticResource OpenSans}"/>
+                <TextBox Style="{StaticResource TextBoxTheme}" Text="{Binding AutorNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
 
-                <Label Foreground="White" Content="Data" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
-                <TextBox Foreground="White" Background="#3f3f3f" Text="{Binding DataNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
+                <Label Foreground="White" Content="Data" FontSize="15" FontFamily="{StaticResource OpenSans}"/>
+                <TextBox Style="{StaticResource TextBoxTheme}" Text="{Binding DataNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
 
-                <Label Foreground="White" Content="Origem" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
-                <TextBox Foreground="White" Background="#3f3f3f" Text="{Binding OrigemNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
+                <Label Foreground="White" Content="Origem" FontSize="15" FontFamily="{StaticResource OpenSans}"/>
+                <TextBox Style="{StaticResource TextBoxTheme}" Text="{Binding OrigemNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
                 
-                <Label Foreground="White" Content="Tipo" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
+                <Label Foreground="White" Content="Tipo" FontSize="15" FontFamily="{StaticResource OpenSans}"/>
                 <ComboBox Background="#3f3f3f" ItemsSource="{Binding Tipo}" SelectedItem="{Binding TipoNovoItem, Mode=TwoWay}" Height="40"/>
 
-                <Label Foreground="White" Content="Estado de Conservação" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
+                <Label Foreground="White" Content="Estado de Conservação" FontSize="15" FontFamily="{StaticResource OpenSans}"/>
                 <ComboBox Foreground="#3f3f3f" ItemsSource="{Binding EstadoCons}" SelectedItem="{Binding EstadoConsNovoItem, Mode=TwoWay}" Height="40"/>
 
-                <Label Foreground="White" Content="Setor Físico" FontSize="18" FontFamily="{StaticResource OpenSans}"/>
-                <TextBox Foreground="White" Background="#3f3f3f" Text="{Binding SetorFisicoNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
+                <Label Foreground="White" Content="Setor Físico" FontSize="15" FontFamily="{StaticResource OpenSans}"/>
+                <TextBox Style="{StaticResource TextBoxTheme}" Text="{Binding SetorFisicoNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
 
                 <Button Content="Registrar" Foreground= "White" Background="#3f3f3f" Width="Auto" Height="50" Margin="0 20 0 0"
                 Command="{Binding RegistrarCommand}"/>

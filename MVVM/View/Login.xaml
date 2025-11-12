@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:patrimonio_digital.MVVM.View"
         mc:Ignorable="d"
+        Background="#121212"
         Title="Login" Height="400" Width="300">
     <Grid>
-        
+        <Border Background="#3f3f3f" Margin="20" CornerRadius="20">
+            
+            
+        </Border>
     </Grid>
 </Window>
