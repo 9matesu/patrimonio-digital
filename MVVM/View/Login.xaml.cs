@@ -1,27 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace patrimonio_digital.MVVM.View
 {
-    /// <summary>
-    /// Lógica interna para Login.xaml
-    /// </summary>
-    public partial class Login : Window
+    public partial class LoginView : Window
     {
-        public Login()
+        private readonly AuthService _authService;
+
+        public LoginView()
         {
             InitializeComponent();
+
+            _authService = new AuthService();
+
+            // Opcional: criar um admin inicial se não existir
+            var adminExistente = _authService.Login("admin", "admin123");
+            if (adminExistente == null)
+            {
+                _authService.Register("admin", "admin123", UserRole.Administrador);
+            }
+        }
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            string nome = txtNome.Text.Trim();
+            string senha = txtSenha.Password.Trim();
+
+            var usuario = _authService.Login(nome, senha);
+
+            if (usuario != null)
+            {
+                // Abre a MainWindow passando o usuário logado
+                var mainWindow = new MainWindow(_authService, usuario);
+                mainWindow.Show();
+
+                // Fecha o login
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Usuário ou senha incorretos!", 
+                                "Erro", 
+                                MessageBoxButton.OK, 
+                                MessageBoxImage.Warning);
+            }
         }
     }
 }
