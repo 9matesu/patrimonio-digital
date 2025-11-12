@@ -12,6 +12,7 @@
                 <ResourceDictionary Source ="Theme/MenuButtonTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source ="Theme/Fonts.xaml"></ResourceDictionary>
                 <ResourceDictionary Source ="Theme/ExitButtonTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source ="Theme/TextBoxTheme.xaml"></ResourceDictionary>
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

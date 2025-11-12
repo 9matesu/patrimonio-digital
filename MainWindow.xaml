@@ -17,7 +17,7 @@
     <!-- Background principal -->
     <Border Background="#121212" CornerRadius="0">
 
-        <Grid Margin="10">
+        <Grid Margin="3">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="4"
                       ShadowDepth="0.02"
@@ -27,22 +27,21 @@
             </Grid.Effect>
             
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="175"/>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
                 
             <!-- Título -->
             <Border Grid.Row="0" Grid.RowSpan="2" 
                     CornerRadius="0" 
                     Background="#3f3f3f"/>
-            
-            
+
+            <Rectangle Fill="Black" Height="3" VerticalAlignment="Bottom"/>
 
             <TextBlock HorizontalAlignment="Center" 
                        Height="auto" TextWrapping="Wrap" 
@@ -51,7 +50,7 @@
                        FontFamily="{StaticResource OpenSans}" 
                        FontStretch="Condensed" 
                        FontWeight="Thin" 
-                       Margin="1,1,1,1"
+                       Margin="10"
                        Text="Acervo Museu Major Novaes"
                        Foreground="White"/>
            
@@ -60,8 +59,7 @@
 
             <StackPanel Grid.Row="1">
 
-                <Rectangle VerticalAlignment="Top" 
-                    Fill="#121212" Width="Auto" Height="3"/>
+               
                 
                 <RadioButton x:Name="btnCatalogo" 
                              Command="{Binding AbrirJanelaCommand}" 
@@ -95,40 +93,31 @@
 
             
             <!-- Caixa de pesquisa -->
-            <StackPanel Grid.Column="1">
-            <Border Margin="10,0,10,0"
-            CornerRadius="20"
-            Background="#3f3f3f"
-            HorizontalAlignment="Center"
-            Padding="10">
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10 0 10 0">
+            
 
                     <TextBox x:Name="CaixaPesquisa"
                      Text="{Binding TextoPesquisa, UpdateSourceTrigger=PropertyChanged}"
-                     Padding="10 0"
-                     Width="700"
+                     Style="{StaticResource TextBoxTheme}"
                      Height="30"
-                     Background="#3f3f3f"
-                     BorderThickness="0"
-                     VerticalAlignment="Bottom"
-                     FontSize="16"
-                     Foreground="White"
                      FontFamily="{StaticResource OpenSans}"/>
 
-                </Border>
+ 
             </StackPanel>
 
 
-            <!-- listbox provisoria -->
+            <!-- listbox -->
             
             <StackPanel Grid.Column="1" Grid.Row="2">
-                <Border Margin="10"
-            CornerRadius="20"
+                <Border Margin="10 0 10 0"
+            CornerRadius="12"
             Background="#3f3f3f"
+            Width="Auto"
             HorizontalAlignment="Center"
             Padding="0">
 
                     <ListBox Margin="10"
-                     Width="700"
+                     Width="Auto"
                      Height="500"
                      HorizontalAlignment="Center"
                      Background="#3f3f3f"
