@@ -17,33 +17,35 @@
     <!-- Background principal -->
     <Border Background="#121212" CornerRadius="0">
 
-        <Grid Margin="3">
-            <Grid.Effect>
-                <DropShadowEffect BlurRadius="4"
+        <StackPanel HorizontalAlignment="Center" Margin="10">
+
+            <Grid Margin="3">
+                <Grid.Effect>
+                    <DropShadowEffect BlurRadius="4"
                       ShadowDepth="0.02"
                       Direction="100"
                       Opacity="0.4"
                       Color="#80000000"/>
-            </Grid.Effect>
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                </Grid.Effect>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-                
-            <!-- Título -->
-            <Border Grid.Row="0" Grid.RowSpan="2" 
-                    CornerRadius="0" 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Título -->
+                <Border Grid.Row="0" Grid.RowSpan="2" 
+                    CornerRadius="12 0 0 12" 
                     Background="#3f3f3f"/>
 
-            <Rectangle Fill="Black" Height="3" VerticalAlignment="Bottom"/>
 
-            <TextBlock HorizontalAlignment="Center" 
+
+                <TextBlock HorizontalAlignment="Center" 
                        Height="auto" TextWrapping="Wrap" 
                        VerticalAlignment="Center" Width="auto"
                        FontSize="17" 
@@ -53,48 +55,48 @@
                        Margin="10"
                        Text="Acervo Museu Major Novaes"
                        Foreground="White"/>
-           
-            
-            <!-- Sidebar -->
 
-            <StackPanel Grid.Row="1">
 
-               
-                
-                <RadioButton x:Name="btnCatalogo" 
+                <!-- Sidebar -->
+
+                <StackPanel Grid.Row="1">
+
+
+
+                    <RadioButton x:Name="btnCatalogo" 
                              Command="{Binding AbrirJanelaCommand}" 
                              CommandParameter="Catalogar" 
                              Content= "Registrar Item" Tag="Book"  
                              Height="50" FontSize="14" 
                              Style="{StaticResource MenuButtonTheme}"/>
-                
-                <RadioButton x:Name="btnUsuarios" 
+
+                    <RadioButton x:Name="btnUsuarios" 
                              Command="{Binding AbrirJanelaCommand}" 
                              CommandParameter="Usuarios" 
                              Content= " Usuários" Tag="User" 
                              Height="50" FontSize="14" 
                              Style="{StaticResource MenuButtonTheme}"/>
-                
-                <RadioButton x:Name="btnAuditoria" 
+
+                    <RadioButton x:Name="btnAuditoria" 
                              Command="{Binding AbrirJanelaCommand}" 
                              CommandParameter="Auditoria" 
                              Content= "Auditoria" Tag="Search" 
                              Height="50" FontSize="14" 
                              Style="{StaticResource MenuButtonTheme}"/>
 
-            </StackPanel>
-            
-            <!-- botão de saída 
+                </StackPanel>
+
+                <!-- botão de saída 
             <StackPanel Grid.Column="3">
                 <Button Content="" Command="{Binding FecharJanelaCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Template="{StaticResource ExitButton}" Width="25" Height="25" HorizontalAlignment="Right"></Button>
                    
             </StackPanel>
              -->
 
-            
-            <!-- Caixa de pesquisa -->
-            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10 0 10 0">
-            
+
+                <!-- Caixa de pesquisa -->
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10 0 10 0">
+
 
                     <TextBox x:Name="CaixaPesquisa"
                      Text="{Binding TextoPesquisa, UpdateSourceTrigger=PropertyChanged}"
@@ -102,56 +104,58 @@
                      Height="30"
                      FontFamily="{StaticResource OpenSans}"/>
 
- 
-            </StackPanel>
+
+                </StackPanel>
 
 
-            <!-- listbox -->
-            
-            <StackPanel Grid.Column="1" Grid.Row="2">
-                <Border Margin="10 0 10 0"
+                <!-- listbox -->
+
+                <StackPanel Grid.Column="1" Grid.Row="2">
+                    <Border Margin="10 0 10 0"
             CornerRadius="12"
             Background="#3f3f3f"
-            Width="Auto"
+            Width="716.8"
             HorizontalAlignment="Center"
             Padding="0">
 
-                    <ListBox Margin="10"
+                        <ListBox Margin="10"
                      Width="Auto"
                      Height="500"
                      HorizontalAlignment="Center"
                      Background="#3f3f3f"
-                     ItemsSource="{Binding ItensView}" BorderBrush="#FF3F3F3F">
+                     ItemsSource="{Binding ItensView}" BorderBrush="#FF3F3F3F"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ScrollViewer.VerticalScrollBarVisibility="Hidden">
 
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Border Padding="10" Margin="5" CornerRadius="5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <!-- dados -->
-                                        <ColumnDefinition Width="Auto" />
-                                        <!-- botão -->
-                                    </Grid.ColumnDefinitions>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Padding="10" Margin="5" CornerRadius="5">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <!-- dados -->
+                                                <ColumnDefinition Width="Auto" />
+                                                <!-- botão -->
+                                            </Grid.ColumnDefinitions>
 
-                                    <StackPanel  Grid.Column="0" Width="600" HorizontalAlignment="Center" Cursor="Hand">
+                                            <StackPanel  Grid.Column="0" Width="600" HorizontalAlignment="Center" Cursor="Hand">
 
-                                            <StackPanel.InputBindings>
-                                                <MouseBinding MouseAction="LeftClick"
+                                                <StackPanel.InputBindings>
+                                                    <MouseBinding MouseAction="LeftClick"
                                                  Command="{Binding DataContext.AbrirEditorCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
                                                  CommandParameter="{Binding}" />
-                                             </StackPanel.InputBindings>
-                                        
-                                            <TextBlock Text="{Binding Nome}" FontWeight="Bold" FontSize="14" Foreground="White" FontFamily="Open Sans"/>
-                                            <TextBlock Text="{Binding Autor, StringFormat='Autoria: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
-                                            <TextBlock Text="{Binding Data, StringFormat='Data: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
-                                            <TextBlock Text="{Binding Origem, StringFormat='Origem: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
-                                            <TextBlock Text="{Binding Tipo, StringFormat='Tipo: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
-                                            <TextBlock Text="{Binding EstadoCons, StringFormat='Estado de Conservação: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
-                                            <TextBlock Text="{Binding SetorFisico, StringFormat='Setor Físico: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
-                                    </StackPanel>
+                                                </StackPanel.InputBindings>
 
-                                    <Button Grid.Column="1"
+                                                <TextBlock Text="{Binding Nome}" FontWeight="Bold" FontSize="14" Foreground="White" FontFamily="Open Sans"/>
+                                                <TextBlock Text="{Binding Autor, StringFormat='Autoria: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
+                                                <TextBlock Text="{Binding Data, StringFormat='Data: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
+                                                <TextBlock Text="{Binding Origem, StringFormat='Origem: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
+                                                <TextBlock Text="{Binding Tipo, StringFormat='Tipo: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
+                                                <TextBlock Text="{Binding EstadoCons, StringFormat='Estado de Conservação: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
+                                                <TextBlock Text="{Binding SetorFisico, StringFormat='Setor Físico: {0}'}" FontSize="12" Foreground="LightGray" FontFamily="Open Sans"/>
+                                            </StackPanel>
+
+                                            <Button Grid.Column="1"
                                 Content="🗑"
                                 Command="{Binding DataContext.ExcluirItemCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
                                 CommandParameter="{Binding}"
@@ -164,19 +168,19 @@
                                 VerticalAlignment="Top"
                                 Cursor="Hand"
                                 ToolTip="Excluir item"/>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                </Border>
-            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Border>
+                </StackPanel>
 
 
 
-        </Grid>
-
-        
-        
+            </Grid>
+        </StackPanel>
     </Border>
+
+
 </Window>

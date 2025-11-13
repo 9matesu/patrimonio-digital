@@ -42,8 +42,8 @@ namespace patrimonio_digital.MVVM.ViewModel
             ExcluirItemCommand = new RelayCommand(ExcluirItem);
             AbrirEditorCommand = new RelayCommand(AbrirEditor);
 
-            Itens = ItemStorage.Carregar();
-            ItensView = CollectionViewSource.GetDefaultView(Itens);
+            Itens = ItemStorage.Carregar(); // carrega itens do armazenamento permanente
+            ItensView = CollectionViewSource.GetDefaultView(Itens); // exibe 'Itens' disponíveis
             ItensView.Filter = FiltrarItens;
         }
 

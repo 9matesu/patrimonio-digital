@@ -1,14 +1,22 @@
 <Window x:Class="patrimonio_digital.MVVM.View.EditorDocumentoView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:patrimonio_digital.MVVM.View"
+        xmlns:vm="clr-namespace:patrimonio_digital.MVVM.ViewModel"
         Title="Editor de Documento"
         Width="500" Height="600"
         Background="#121212"
         WindowStartupLocation="CenterScreen">
 
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
     <DockPanel Background="#121212">
         <StackPanel Background="#121212" DockPanel.Dock="Top" Orientation="Horizontal" Margin="5">
-            <Button Content="Anterior" Command="{Binding AnteriorCommand}" Margin="2"/>
+            <Button Style="{StaticResource EditorButtonTheme}" Content="Anterior" Command="{Binding AnteriorCommand}" Margin="2"/>
             <Button Content="Salvar" Command="{Binding SalvarCommand}" Margin="2"/>
             <Button Content="Proxima" Command="{Binding ProximaCommand}" Margin="2" Click="Button_Click"/>
             <TextBlock Foreground="White" Text="{Binding Pagina}" VerticalAlignment="Center" Margin="10,0,0,0"/>
