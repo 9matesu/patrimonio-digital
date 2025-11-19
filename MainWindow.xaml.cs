@@ -18,8 +18,21 @@ namespace patrimonio_digital
         public MainWindow()
         {
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            this.Loaded += MainWindow_Loaded;
+            this.Closing += MainWindow_Closing;
         }
 
-      
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("MainWindow carregada");
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBox.Show("MainWindow fechando");
+        }
+
+
     }
 }

@@ -1,24 +1,17 @@
 ﻿<Application x:Class="patrimonio_digital.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:patrimonio_digital"
-             StartupUri="MainWindow.xaml">
-
-    
-    <Application.Resources>
-
-        <ResourceDictionary>
-            
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source ="Theme/MenuButtonTheme.xaml"></ResourceDictionary>
-                <ResourceDictionary Source ="Theme/Fonts.xaml"></ResourceDictionary>
-                <ResourceDictionary Source ="Theme/ExitButtonTheme.xaml"></ResourceDictionary>
-                <ResourceDictionary Source ="Theme/TextBoxTheme.xaml"></ResourceDictionary>
-                <ResourceDictionary Source ="Theme/EditorButtonTheme.xaml"></ResourceDictionary>
-
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-        
-         
-    </Application.Resources>
+             StartupUri="MVVM/View/Login.xaml">
+	<Application.Resources>
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="Theme/MenuButtonTheme.xaml" />
+            <ResourceDictionary Source="Theme/Fonts.xaml" />
+            <ResourceDictionary Source="Theme/ExitButtonTheme.xaml" />
+            <ResourceDictionary Source="Theme/TextBoxTheme.xaml" />
+            <ResourceDictionary Source="Theme/EditorButtonTheme.xaml" />
+			<ResourceDictionary Source="Theme/PasswordBoxTheme.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+</Application.Resources>
 </Application>

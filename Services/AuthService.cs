@@ -11,16 +11,22 @@ using patrimonio_digital.MVVM.Model;
 public class AuthService
 {
     private List<Usuario> _users = new();
+    private const string UsersFilePath = "usuarios.json";
 
     public AuthService()
     {
-        // Opcional: carregar usuários do JSON ao iniciar
-        LoadUsersFromJson("usuarios.json");
+        LoadUsersFromJson(UsersFilePath);
+
+        // Cria usuário admin padrão caso a lista esteja vazia
+        if (!_users.Any())
+        {
+            Register("admin", "admin", TipoUsuario.Administrador);
+        }
     }
 
     #region Cadastro de Usuário
 
-    public bool Register(string nome, string senha, TipoUsuario role = TipoUsuario.Visitante)
+    public bool Register(string nome, string senha, TipoUsuario tipo = TipoUsuario.Visitante)
     {
         if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(senha))
             return false;
@@ -32,13 +38,11 @@ public class AuthService
         {
             Nome = nome.Trim(),
             Senha = HashPassword(senha.Trim()),
-            Tipo = role
+            Tipo = tipo
         };
 
         _users.Add(usuario);
-
-        SaveUsersToJson("usuarios.json"); // salva imediatamente
-
+        SaveUsersToJson(UsersFilePath);
         return true;
     }
 
@@ -51,14 +55,8 @@ public class AuthService
         if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(senha))
             return null;
 
-        nome = nome.Trim();
-        senha = senha.Trim();
-
-        var usuario = _users.FirstOrDefault(u =>
-            u.Nome.Equals(nome, StringComparison.OrdinalIgnoreCase));
-
-        if (usuario == null)
-            return null;
+        var usuario = _users.FirstOrDefault(u => u.Nome.Equals(nome.Trim(), StringComparison.OrdinalIgnoreCase));
+        if (usuario == null) return null;
 
         return VerifyPassword(senha, usuario.Senha) ? usuario : null;
     }
@@ -89,7 +87,7 @@ public class AuthService
         var options = new JsonSerializerOptions
         {
             WriteIndented = true,
-            Converters = { new JsonStringEnumConverter() } // serializa enum como texto
+            Converters = { new JsonStringEnumConverter() }
         };
         var json = JsonSerializer.Serialize(_users, options);
         File.WriteAllText(path, json);
@@ -97,13 +95,11 @@ public class AuthService
 
     public void LoadUsersFromJson(string path)
     {
-        if (!File.Exists(path))
-            return;
-
+        if (!File.Exists(path)) return;
         var json = File.ReadAllText(path);
         var options = new JsonSerializerOptions
         {
-            Converters = { new JsonStringEnumConverter() } // desserializa enum como texto
+            Converters = { new JsonStringEnumConverter() }
         };
         _users = JsonSerializer.Deserialize<List<Usuario>>(json, options) ?? new List<Usuario>();
     }
