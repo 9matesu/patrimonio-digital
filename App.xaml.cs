@@ -1,10 +1,12 @@
 ﻿using System.Windows;
-using patrimonio_digital.MVVM.View; // ajuste para seu namespace do Login
+using patrimonio_digital.MVVM.Model;
+using patrimonio_digital.MVVM.View; 
 
 namespace patrimonio_digital
 {
     public partial class App : Application
     {
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             var loginWindow = new Login();
@@ -14,6 +16,7 @@ namespace patrimonio_digital
             {
                 try
                 {
+
                     var mainWindow = new MainWindow();
                     MainWindow = mainWindow;
                     mainWindow.Show();

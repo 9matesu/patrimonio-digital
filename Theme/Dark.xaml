@@ -8,6 +8,7 @@
      <!-- cores padrão -->
     <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#132e39"/> <!-- 900 -->
     <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="#244755"/> <!-- 950 -->
+    <SolidColorBrush x:Key="MainColorBrush" Color="#31a9be"/> <!-- 500 -->
     <SolidColorBrush x:Key="ForegroundBrush" Color="#f0fbfb"/> <!-- 50 -->
     <SolidColorBrush x:Key="SecondaryForegroundBrush" Color="#d8f3f5"/> <!-- 100 -->
 
@@ -114,14 +115,15 @@
         </Style.Setters>
     </Style>
 
-    <!-- botão click -->
+    <!-- botões clicáveis -->
     <Style x:Key="EditorButtonTheme" TargetType="Button">
-        <Setter Property="Background" Value="#2E2E2E"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="{DynamicResource MainColorBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Padding" Value="8,4"/>
         <Setter Property="Template">
+            
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -132,6 +134,7 @@
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
+            
         </Setter>
     </Style>
 
@@ -231,7 +234,7 @@
                             <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
                         </Trigger>
                         <Trigger Property="IsDropDownOpen" Value="True">
-                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
+                            <Setter TargetName="Border" Property="BorderBrush" Value="Transparent"/>
                         </Trigger>
                         <!-- Quando não tem itens -->
                         <Trigger Property="HasItems" Value="False">

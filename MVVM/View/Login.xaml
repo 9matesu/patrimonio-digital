@@ -2,25 +2,27 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Login"
-        Height="320" Width="350"
-		MinWidth="300" MinHeight="220"
+        Height="500" Width="500"
         WindowStartupLocation="CenterScreen"
-        Background="#0b508c"
-        SizeToContent="Height">
+        FontFamily="{StaticResource Inter}">
 
-	<Border Background="#121212" CornerRadius="0" Padding="0" Margin="0">
-		<StackPanel HorizontalAlignment="Center" Width="300">
-
-			<TextBlock Text="Login"
-					   FontSize="24"
-					   FontWeight="Bold"
-					   HorizontalAlignment="Center"
-					   Foreground="White"
-					   Margin="0,0,0,20"
-					   FontFamily="{StaticResource OpenSans}"
-					   FontStretch="Condensed" />
-
-			<TextBox x:Name="txtNome"
+	<Border Background="{StaticResource WindowBackgroundBrush}" CornerRadius="0" Padding="0" Margin="0">
+        
+		<StackPanel HorizontalAlignment="Center" Width="Auto" VerticalAlignment="Center">
+            
+            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Path Data="M6.69 2a1.75 1.75 0 00-1.75 1.756L5 21.253a.75.75 0 001.219.583L12 17.21l5.782 4.625A.75.75 0 0019 21.25V3.75A1.75 1.75 0 0017.25 2H6.69z"
+				Fill="{DynamicResource ForegroundBrush}"
+		         Stretch="Uniform"
+		         Width="50"
+		         Height="50"
+		         Margin="10"/>
+                <TextBlock Text="digiPat" FontSize="38" Foreground="{DynamicResource ForegroundBrush}" Margin="10" FontWeight="Bold" HorizontalAlignment="Center" />
+            </StackPanel>
+            
+            <TextBlock Text="Olá! Faça seu login" FontSize="12" Foreground="{DynamicResource ForegroundBrush}" Margin="10 10 10 25" FontWeight="Regular" HorizontalAlignment="Center" />
+            
+            <TextBox x:Name="txtNome"
 					 Height="30"
 					 Margin="0,0,0,10"
 					 Width="280"
@@ -30,7 +32,7 @@
 						 Height="30"
 						 Margin="0,0,0,20"
 						 Width="280"
-						 Style="{StaticResource PasswordBoxTheme}" />
+						 />
 
 			<Button Content="Entrar"
 					Width="100"
@@ -38,7 +40,8 @@
 					HorizontalAlignment="Center"
 					Click="Entrar_Click"
 					Style="{StaticResource EditorButtonTheme}" />
+                
 
-		</StackPanel>
+        </StackPanel>
 	</Border>
 </Window>

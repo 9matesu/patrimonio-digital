@@ -1,11 +1,16 @@
-﻿using System;
+﻿using patrimonio_digital.MVVM.Model;
+using patrimonio_digital.MVVM.View;
+using patrimonio_digital.MVVM.ViewModel;
+using System;
 using System.Windows;
 using System.Windows.Controls;
+
 
 namespace patrimonio_digital
 {
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using patrimonio_digital.MVVM.Model;
+using System.Windows;
 
 namespace patrimonio_digital.MVVM.View
 {
@@ -8,7 +9,7 @@ namespace patrimonio_digital.MVVM.View
         {
             InitializeComponent();
         }
-
+        public Usuario UsuarioLogado { get; private set; }
         private void Entrar_Click(object sender, RoutedEventArgs e)
         {
             var auth = new AuthService();

@@ -7,11 +7,13 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using patrimonio_digital.MVVM.Model;
 
 namespace patrimonio_digital.MVVM.ViewModel
 {
     public class MainViewModel : ObservableObject
     {
+
         public ICommand AbrirJanelaCommand { get; }
         public ICommand FecharJanelaCommand { get; }
         public ICommand ExcluirItemCommand { get; }

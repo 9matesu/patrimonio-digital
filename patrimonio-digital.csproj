@@ -66,9 +66,6 @@
     <None Remove="Fonts\Inter\Inter_28pt-SemiBoldItalic.ttf" />
     <None Remove="Fonts\Inter\Inter_28pt-Thin.ttf" />
     <None Remove="Fonts\Inter\Inter_28pt-ThinItalic.ttf" />
-    <None Remove="Icons\auditoria_icon.svg" />
-    <None Remove="Icons\registrar_icon.svg" />
-    <None Remove="Icons\users_icon.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -241,15 +238,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Fonts\Inter\Inter_28pt-ThinItalic.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Icons\auditoria_icon.svg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Icons\registrar_icon.svg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Icons\users_icon.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
