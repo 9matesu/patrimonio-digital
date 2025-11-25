@@ -10,28 +10,31 @@
         Background="#121212"
         WindowStartupLocation="CenterScreen">
 
-    <Window.DataContext>
-        <vm:MainViewModel />
-    </Window.DataContext>
-
     <DockPanel Background="#121212">
-        <StackPanel Background="#121212" DockPanel.Dock="Top" Orientation="Horizontal" Margin="5">
-            <Button Style="{StaticResource EditorButtonTheme}" Content="Anterior" Command="{Binding AnteriorCommand}" Margin="2"/>
-            <Button Content="Salvar" Command="{Binding SalvarCommand}" Margin="2"/>
-            <Button Content="Proxima" Command="{Binding ProximaCommand}" Margin="2" Click="Button_Click"/>
-            <TextBlock Foreground="White" Text="{Binding Pagina}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+
+        <StackPanel Orientation="Horizontal" Margin="10 5 0 0" DockPanel.Dock="Top">
+            <Button Content="&lt;" Command="{Binding AnteriorCommand}" Style="{StaticResource EditorButtonTheme}" Margin="2"/>
+            <Button Content="&gt;" Command="{Binding ProximaCommand}" Style="{StaticResource EditorButtonTheme}" Margin="2"/>
+            <Button Content="Salvar Tudo" Command="{Binding FecharCommand}" Style="{StaticResource EditorButtonTheme}" Margin="2"/>
+
+            <TextBlock Foreground="White"
+                       Text="{Binding PaginaAtual.Numero}"
+                       VerticalAlignment="Center"
+                       Margin="10,0,0,0"/>
         </StackPanel>
 
         <Border Background="#3f3f3f" CornerRadius="20" Margin="10">
-        <TextBox Background="#3f3f3f" Foreground="White" Text="{Binding Conteudo, UpdateSourceTrigger=PropertyChanged}"
-                 AcceptsReturn="True"
-                 AcceptsTab="True"
-                 VerticalScrollBarVisibility="Auto"
-                 HorizontalScrollBarVisibility="Auto"
-                 FontSize="14"
-                 BorderBrush="#3f3f3f"
-                 Margin="10" TextChanged="TextBox_TextChanged"/>
+            <TextBox Text="{Binding PaginaAtual.Conteudo, UpdateSourceTrigger=PropertyChanged}"
+                     Background="#3f3f3f"
+                     Foreground="White"
+                     AcceptsReturn="True"
+                     AcceptsTab="True"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     FontSize="14"
+                     BorderBrush="#3f3f3f"
+                     Margin="10"/>
         </Border>
-        
+
     </DockPanel>
 </Window>

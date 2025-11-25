@@ -10,19 +10,246 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Fonts\OpenSans\OpenSans-Regular.ttf" />
+    <None Remove="digipat.ico" />
+    <None Remove="Fonts\Inter\Inter-Regular.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-Black.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-BlackItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-Bold.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-BoldItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-ExtraBold.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-ExtraBoldItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-ExtraLight.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-ExtraLightItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-Italic.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-Light.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-LightItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-Medium.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-MediumItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-Regular.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-SemiBold.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-SemiBoldItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-Thin.ttf" />
+    <None Remove="Fonts\Inter\Inter_18pt-ThinItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-Black.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-BlackItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-Bold.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-BoldItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-ExtraBold.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-ExtraBoldItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-ExtraLight.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-ExtraLightItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-Italic.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-Light.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-LightItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-Medium.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-MediumItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-Regular.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-SemiBold.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-SemiBoldItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-Thin.ttf" />
+    <None Remove="Fonts\Inter\Inter_24pt-ThinItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-Black.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-BlackItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-Bold.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-BoldItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-ExtraBold.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-ExtraBoldItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-ExtraLight.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-ExtraLightItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-Italic.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-Light.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-LightItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-Medium.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-MediumItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-Regular.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-SemiBold.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-SemiBoldItalic.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-Thin.ttf" />
+    <None Remove="Fonts\Inter\Inter_28pt-ThinItalic.ttf" />
+    <None Remove="Icons\auditoria_icon.svg" />
+    <None Remove="Icons\registrar_icon.svg" />
+    <None Remove="Icons\users_icon.svg" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Images\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Fonts\OpenSans-Regular.ttf">
+    <Resource Include="digipat.ico" />
+    <Resource Include="Fonts\Inter\Inter-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-Black.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-BlackItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-BoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-ExtraBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-ExtraBoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-ExtraLight.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-ExtraLightItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-Italic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-Light.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-LightItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-Medium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-MediumItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-SemiBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-Thin.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_18pt-ThinItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-Black.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-BlackItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-BoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-ExtraBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-ExtraBoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-ExtraLight.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-ExtraLightItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-Italic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-Light.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-LightItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-Medium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-MediumItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-SemiBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-Thin.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_24pt-ThinItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-Black.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-BlackItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-BoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-ExtraBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-ExtraBoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-ExtraLight.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-ExtraLightItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-Italic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-Light.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-LightItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-Medium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-MediumItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-SemiBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-Thin.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Inter\Inter_28pt-ThinItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\auditoria_icon.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\registrar_icon.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\users_icon.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
