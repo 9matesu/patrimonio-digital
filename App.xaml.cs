@@ -17,11 +17,11 @@ namespace patrimonio_digital
                     var mainWindow = new MainWindow();
                     MainWindow = mainWindow;
                     mainWindow.Show();
-                    MessageBox.Show("MainWindow abriu!");
+                    // MessageBox.Show("MainWindow abriu!"); //
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao abrir a MainWindow: " + ex.Message);
+                   // MessageBox.Show("Erro ao abrir a MainWindow: " + ex.Message); //
                     Shutdown();
                 }
             }

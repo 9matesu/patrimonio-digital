@@ -11,6 +11,7 @@
             <ResourceDictionary Source="Theme/TextBoxTheme.xaml" />
             <ResourceDictionary Source="Theme/EditorButtonTheme.xaml" />
 			<ResourceDictionary Source="Theme/PasswordBoxTheme.xaml" />
+            <ResourceDictionary Source="Theme/ComboBoxTheme.xaml" />
         </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
 </Application.Resources>
