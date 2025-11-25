@@ -73,7 +73,7 @@ namespace patrimonio_digital.MVVM.ViewModel
                 {
                     "Catalogar" => new CatalogarItemWindow { DataContext = new CatalogarItemViewModel(Itens) },
                     "Auditoria" => new Auditoria(),
-                    "Usuarios" => new Usuarios(),
+                    "Usuarios" => new CadastroUsuarioWindow(),
                     "Login" => new Login(),
                     _ => null
                 };

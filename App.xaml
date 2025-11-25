@@ -19,3 +19,18 @@
          
     </Application.Resources>
 </Application>
+             StartupUri="MVVM/View/Login.xaml">
+	<Application.Resources>
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="Theme/MenuButtonTheme.xaml" />
+            <ResourceDictionary Source="Theme/Fonts.xaml" />
+            <ResourceDictionary Source="Theme/ExitButtonTheme.xaml" />
+            <ResourceDictionary Source="Theme/TextBoxTheme.xaml" />
+            <ResourceDictionary Source="Theme/EditorButtonTheme.xaml" />
+			<ResourceDictionary Source="Theme/PasswordBoxTheme.xaml" />
+            <ResourceDictionary Source="Theme/ComboBoxTheme.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+</Application.Resources>
+</Application>
