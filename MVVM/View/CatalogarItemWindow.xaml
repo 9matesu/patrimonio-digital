@@ -12,9 +12,6 @@
         FontFamily="{StaticResource Inter}"
         Icon="/digipat.ico">
 
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
 
 
     

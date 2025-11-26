@@ -16,7 +16,7 @@ namespace patrimonio_digital.MVVM.ViewModel
     public class MainViewModel : ObservableObject
     {
         private Usuario _usuarioLogado;
-        public Usuario UsuarioLogado
+        public Usuario UsuarioLogadoBool
         {
             get => _usuarioLogado;
             set
@@ -30,20 +30,20 @@ namespace patrimonio_digital.MVVM.ViewModel
             }
         }
 
-        public bool PodeCatalogar => UsuarioLogado != null &&
-            (UsuarioLogado.Tipo == TipoUsuario.Administrador || UsuarioLogado.Tipo == TipoUsuario.Funcionario);
+        public bool PodeCatalogar => UsuarioLogadoBool != null &&
+            (UsuarioLogadoBool.Tipo == TipoUsuario.Administrador || UsuarioLogadoBool.Tipo == TipoUsuario.Funcionario);
 
-        public bool PodeExcluir => UsuarioLogado != null &&
-            UsuarioLogado.Tipo == TipoUsuario.Administrador;
+        public bool PodeExcluir => UsuarioLogadoBool != null &&
+            UsuarioLogadoBool.Tipo == TipoUsuario.Administrador;
 
-        public bool PodeGerenciarUsuarios => UsuarioLogado != null &&
-            UsuarioLogado.Tipo == TipoUsuario.Administrador;
+        public bool PodeGerenciarUsuarios => UsuarioLogadoBool != null &&
+            UsuarioLogadoBool.Tipo == TipoUsuario.Administrador;
 
-        public bool PodeAuditoria => UsuarioLogado != null &&
-            UsuarioLogado.Tipo == TipoUsuario.Administrador;
+        public bool PodeAuditoria => UsuarioLogadoBool != null &&
+            UsuarioLogadoBool.Tipo == TipoUsuario.Administrador;
 
-        public bool PodeEditar => UsuarioLogado != null &&
-            UsuarioLogado.Tipo != TipoUsuario.Visitante;
+        public bool PodeEditar => UsuarioLogadoBool != null &&
+            UsuarioLogadoBool.Tipo != TipoUsuario.Visitante;
 
         public ICommand AbrirJanelaCommand { get; }
         public ICommand FecharJanelaCommand { get; }
@@ -135,7 +135,7 @@ namespace patrimonio_digital.MVVM.ViewModel
 
                 Window janela = tipoJanela switch
                 {
-                    "Catalogar" when PodeCatalogar => new CatalogarItemWindow { DataContext = new CatalogarItemViewModel(Itens) },
+                    "Catalogar" when PodeCatalogar => new CatalogarItemWindow { DataContext = new CatalogarItemViewModel(Itens, UsuarioLogado) },
                     "Auditoria" when PodeAuditoria => new Auditoria(),
                     "Usuarios" when PodeGerenciarUsuarios => new CadastroUsuarioWindow(),
                     "Login" => new Login(),
@@ -216,5 +216,12 @@ namespace patrimonio_digital.MVVM.ViewModel
                 }
             }
         }
+
+        public void OnClose()
+        {
+            ItemStorage.Salvar(Itens);
+            AuditoriaService.SalvarAuditoria();
+        }
+
     }
 }

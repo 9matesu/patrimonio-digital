@@ -12,10 +12,11 @@
         Background="{DynamicResource WindowBackgroundBrush}">
 
 
+    <!-- 
     <Window.DataContext>
         <vm:AuditoriaViewModel/>
     </Window.DataContext>
-
+    -->
 
     <Grid>
         <StackPanel VerticalAlignment="Stretch">
