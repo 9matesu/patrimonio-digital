@@ -1,33 +1,30 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.IO;
 using patrimonio_digital.MVVM.Model;
 
 public class AuthService
 {
- 
     private List<Usuario> _users = new();
     private const string UsersFilePath = "usuarios.json";
 
-    public static Usuario? UsuarioLogado { get;  set; }
+    public Usuario? UsuarioLogado { get; private set; }
 
     public AuthService()
     {
         LoadUsersFromJson(UsersFilePath);
 
-        // Cria usuário admin padrão caso a lista esteja vazia
+        // Cria usuário admin padrão se lista estiver vazia
         if (!_users.Any())
         {
             Register("admin", "admin", TipoUsuario.Administrador);
         }
     }
-
-    #region Cadastro de Usuário
 
     public bool Register(string nome, string senha, TipoUsuario tipo = TipoUsuario.Visitante)
     {
@@ -35,7 +32,7 @@ public class AuthService
             return false;
 
         if (_users.Any(u => u.Nome.Equals(nome, StringComparison.OrdinalIgnoreCase)))
-            return false; // usuário já existe
+            return false; // já existe
 
         var usuario = new Usuario
         {
@@ -48,10 +45,6 @@ public class AuthService
         SaveUsersToJson(UsersFilePath);
         return true;
     }
-
-    #endregion
-
-    #region Login
 
     public Usuario? Login(string nome, string senha)
     {
@@ -66,15 +59,8 @@ public class AuthService
             UsuarioLogado = usuario;
             return usuario;
         }
-        else
-        {
-            return null;
-        }
+        return null;
     }
-
-    #endregion
-
-    #region Hash de Senha
 
     private string HashPassword(string password)
     {
@@ -89,10 +75,6 @@ public class AuthService
         return HashPassword(password) == hash;
     }
 
-    #endregion
-
-    #region JSON com System.Text.Json
-
     public void SaveUsersToJson(string path)
     {
         var options = new JsonSerializerOptions
@@ -106,7 +88,11 @@ public class AuthService
 
     public void LoadUsersFromJson(string path)
     {
-        if (!File.Exists(path)) return;
+        if (!File.Exists(path))
+        {
+            _users = new List<Usuario>();
+            return;
+        }
         var json = File.ReadAllText(path);
         var options = new JsonSerializerOptions
         {
@@ -115,5 +101,42 @@ public class AuthService
         _users = JsonSerializer.Deserialize<List<Usuario>>(json, options) ?? new List<Usuario>();
     }
 
-    #endregion
+    public List<Usuario> GetAllUsers()
+    {
+        return new List<Usuario>(_users);
+    }
+
+    public bool RemoveUser(Usuario usuario)
+    {
+        if (_users.Remove(usuario))
+        {
+            SaveUsersToJson(UsersFilePath);
+            return true;
+        }
+        return false;
+    }
+
+    public bool AtualizarUsuario(Usuario usuarioAntigo, string novoNome, string novaSenha, TipoUsuario novoTipo)
+    {
+        if (usuarioAntigo == null)
+            return false;
+
+        // Verifica se já existe outro usuário com o novo nome
+        if (!_users
+            .Where(u => u != usuarioAntigo)
+            .Any(u => u.Nome.Equals(novoNome, StringComparison.OrdinalIgnoreCase)))
+        {
+            usuarioAntigo.Nome = novoNome;
+            usuarioAntigo.Tipo = novoTipo;
+
+            if (!string.IsNullOrEmpty(novaSenha))
+            {
+                usuarioAntigo.Senha = HashPassword(novaSenha);
+            }
+
+            SaveUsersToJson(UsersFilePath);
+            return true;
+        }
+        return false; // nome duplicado
+    }
 }
