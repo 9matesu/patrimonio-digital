@@ -7,34 +7,53 @@
         xmlns:vm="clr-namespace:patrimonio_digital.MVVM.ViewModel"
         Title="Editor de Documento"
         Width="500" Height="600"
-        Background="#121212"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        FontFamily="{StaticResource Inter}"
+        Icon="/digipat.ico">
 
-    <DockPanel Background="#121212">
+    <DockPanel Background="{DynamicResource WindowBackgroundBrush}">
+        
+        <!-- stackpanel header -->
+        <StackPanel Orientation="Horizontal" Margin="10 5 10 0" DockPanel.Dock="Top">
 
-        <StackPanel Orientation="Horizontal" Margin="10 5 0 0" DockPanel.Dock="Top">
-            <Button Content="&lt;" Command="{Binding AnteriorCommand}" Style="{StaticResource EditorButtonTheme}" Margin="2"/>
-            <Button Content="&gt;" Command="{Binding ProximaCommand}" Style="{StaticResource EditorButtonTheme}" Margin="2"/>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Path Data="M8.56078 20.2501L20.5608 8.25011L15.7501 3.43945L3.75012 15.4395V20.2501H8.56078ZM15.7501 5.56077L18.4395 8.25011L16.5001 10.1895L13.8108 7.50013L15.7501 5.56077ZM12.7501 8.56079L15.4395 11.2501L7.93946 18.7501H5.25012L5.25012 16.0608L12.7501 8.56079Z"
+          Fill="{DynamicResource ForegroundBrush}"
+          Stretch="Uniform"
+          Width="15"
+          Height="15"
+          Margin="10"/>
+                <Label Foreground="White" FontSize="18" VerticalAlignment="Center" Content="Editor de Documento"></Label>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 0">
+                
+                <TextBlock Foreground="White"
+           Text="{Binding PaginaAtual.Numero}"
+           VerticalAlignment="Center"
+           Margin="10,0,0,0"/>
+                
+            <Button Content="&lt;" Command="{Binding AnteriorCommand}" Style="{StaticResource EditorButtonTheme}" Margin="2" Width="30"/>
+            <Button Content="&gt;" Command="{Binding ProximaCommand}" Style="{StaticResource EditorButtonTheme}" Margin="2" Width="30"/>
             <Button Content="Salvar Tudo" Command="{Binding FecharCommand}" Style="{StaticResource EditorButtonTheme}" Margin="2"/>
 
-            <TextBlock Foreground="White"
-                       Text="{Binding PaginaAtual.Numero}"
-                       VerticalAlignment="Center"
-                       Margin="10,0,0,0"/>
+            
+                
+            </StackPanel>
+            
         </StackPanel>
 
-        <Border Background="#3f3f3f" CornerRadius="20" Margin="10">
-            <TextBox Text="{Binding PaginaAtual.Conteudo, UpdateSourceTrigger=PropertyChanged}"
-                     Background="#3f3f3f"
-                     Foreground="White"
+
+        <TextBox Text="{Binding PaginaAtual.Conteudo, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{DynamicResource TextBoxTheme}"
                      AcceptsReturn="True"
                      AcceptsTab="True"
+                        VerticalContentAlignment="Top"
                      VerticalScrollBarVisibility="Auto"
                      HorizontalScrollBarVisibility="Auto"
                      FontSize="14"
-                     BorderBrush="#3f3f3f"
-                     Margin="10"/>
-        </Border>
+                     Margin="10 5 10 10"/>
 
     </DockPanel>
 </Window>

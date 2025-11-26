@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:patrimonio_digital.MVVM.View"
         xmlns:vm="clr-namespace:patrimonio_digital.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="Adicionar item" Height="640" Width="250"
+        Title="Adicionar item" Height="660" Width="250"
         Background="{DynamicResource WindowBackgroundBrush}"
         WindowStartupLocation="CenterScreen" ShowInTaskbar="True" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight"
         FontFamily="{StaticResource Inter}"
         Icon="/digipat.ico">
 
     <Window.DataContext>
-        <vm:MainViewModel />
+        <vm:MainViewModel/>
     </Window.DataContext>
 
 
@@ -31,52 +31,61 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0">
+            <!-- stackpanel header -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Path Data="M8.56078 20.2501L20.5608 8.25011L15.7501 3.43945L3.75012 15.4395V20.2501H8.56078ZM15.7501 5.56077L18.4395 8.25011L16.5001 10.1895L13.8108 7.50013L15.7501 5.56077ZM12.7501 8.56079L15.4395 11.2501L7.93946 18.7501H5.25012L5.25012 16.0608L12.7501 8.56079Z"
+                      Fill="{DynamicResource ForegroundBrush}"
+                      Stretch="Uniform"
+                      Width="15"
+                      Height="15"
+                      Margin="10"/>
                 <Label Foreground="White" FontSize="18" VerticalAlignment="Center" Content="Registro de Itens"></Label>
-
+               
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Center" Grid.Row="1" Margin="0,0,0,0" Width="230">
+                <Rectangle Fill="{DynamicResource ForegroundBrush}" Height="1" Margin="00 05 0 10"/>
 
-                <StackPanel>
+                <StackPanel Margin="0 5 0 0">
                     <Label Foreground="{DynamicResource SecondaryForegroundBrush}" Content="Título" FontSize="15"/>
                     <TextBox Style="{StaticResource TextBoxTheme}" Text="{Binding NomeNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
                 </StackPanel>
 
-                <StackPanel>
+                <StackPanel Margin="0 5 0 0">
                     <Label Foreground="{DynamicResource SecondaryForegroundBrush}" Content="Autoria" FontSize="15"/>
                     <TextBox Style="{StaticResource TextBoxTheme}" Text="{Binding AutorNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
                 </StackPanel>
 
-                <StackPanel>
+                <StackPanel Margin="0 5 0 0">
                     <Label Foreground="{DynamicResource SecondaryForegroundBrush}" Content="Data" FontSize="15"/>
                     <TextBox Style="{StaticResource TextBoxTheme}" Text="{Binding DataNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
                 </StackPanel>
 
-                <StackPanel>
+                <StackPanel Margin="0 5 0 0">
                     <Label Foreground="{DynamicResource SecondaryForegroundBrush}" Content="Origem" FontSize="15"/>
                     <TextBox Style="{StaticResource TextBoxTheme}" Text="{Binding OrigemNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
                 </StackPanel>
 
-                <StackPanel>
+                <StackPanel Margin="0 5 0 0">
                     <Label Foreground="{DynamicResource SecondaryForegroundBrush}" Content="Tipo" FontSize="15"/>
                     <ComboBox ItemsSource="{Binding Tipo}" SelectedItem="{Binding TipoNovoItem, Mode=TwoWay}" Height="40" Style="{StaticResource FlatComboBox}"/>
                 </StackPanel>
 
-                <StackPanel>
+                <StackPanel Margin="0 5 0 0">
                     <Label Foreground="{DynamicResource SecondaryForegroundBrush}" Content="Estado de Conservação" FontSize="15"/>
                     <ComboBox ItemsSource="{Binding EstadoCons}" SelectedItem="{Binding EstadoConsNovoItem, Mode=TwoWay}" Height="40" Style="{StaticResource FlatComboBox}"/>
                 </StackPanel>
 
-                <StackPanel>
+                <StackPanel Margin="0 5 0 0">
                     <Label Foreground="{DynamicResource SecondaryForegroundBrush}" Content="Setor Físico" FontSize="15"/>
                     <TextBox Style="{StaticResource TextBoxTheme}" Text="{Binding SetorFisicoNovoItem, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
                 </StackPanel>
 
                 <StackPanel>
-                    <Button Content="Registrar" Foreground="{DynamicResource SecondaryForegroundBrush}" Background="#3f3f3f" Width="Auto" Height="50" Margin="0 20 0 0"
+                    <Button Content="Registrar" Foreground="{DynamicResource SecondaryForegroundBrush}" Width="Auto" Height="50" Margin="0 15 0 0"
                     Command="{Binding RegistrarCommand}"
-                    Style="{DynamicResource EditorButtonTheme}"/>
+                    Style="{DynamicResource EditorButtonTheme}"
+                    VerticalAlignment="Bottom"/>
                 </StackPanel>
 
             </StackPanel>

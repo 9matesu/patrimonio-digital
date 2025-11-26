@@ -1,25 +1,95 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using patrimonio_digital.Core;
 
 namespace patrimonio_digital.MVVM.Model
 {
-
-    // Aqui fica a modelagem dos dados dos itens, assim como a criação da Lista de objetos
-
-    public class Item
+    public class Item : ObservableObject
     {
-        public string Nome { get; set; }
-        public string Autor { get; set; }
-        public string Data { get; set; }
-        public string Origem { get; set; }
-        public string Tipo { get; set; }
-        public string EstadoCons { get; set; }
-        public string SetorFisico { get; set; }
-        public string PastaDocumentos { get; set; }
+        private string _nome;
+        public string Nome
+        {
+            get => _nome;
+            set
+            {
+                _nome = value;
+                OnPropertyChanged();
+            }
+        }
 
+        private string _autor;
+        public string Autor
+        {
+            get => _autor;
+            set
+            {
+                _autor = value;
+                OnPropertyChanged();
+            }
+        }
 
+        private string _data;
+        public string Data
+        {
+            get => _data;
+            set
+            {
+                _data = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _origem;
+        public string Origem
+        {
+            get => _origem;
+            set
+            {
+                _origem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _tipo;
+        public string Tipo
+        {
+            get => _tipo;
+            set
+            {
+                _tipo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _estadoCons;
+        public string EstadoCons
+        {
+            get => _estadoCons;
+            set
+            {
+                _estadoCons = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _setorFisico;
+        public string SetorFisico
+        {
+            get => _setorFisico;
+            set
+            {
+                _setorFisico = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _pastaDocumentos;
+        public string PastaDocumentos
+        {
+            get => _pastaDocumentos;
+            set
+            {
+                _pastaDocumentos = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

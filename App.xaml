@@ -3,20 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:patrimonio_digital"
              StartupUri="MVVM/View/Login.xaml">
-
     
     <Application.Resources>
-
         <ResourceDictionary>
-            
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source ="Theme/Fonts.xaml"></ResourceDictionary>
-                <ResourceDictionary Source ="Theme/Dark.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Theme/Fonts.xaml" />
+                <ResourceDictionary Source="Theme/Dark.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        
-         
     </Application.Resources>
+
 </Application>
-             
-	

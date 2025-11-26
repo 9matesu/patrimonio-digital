@@ -1,15 +1,16 @@
-﻿// MVVM/ViewModel/DocumentoViewModel.cs
-using patrimonio_digital.Core;
+﻿using patrimonio_digital.Core;
 using patrimonio_digital.MVVM.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Web;
 
 namespace patrimonio_digital.MVVM.ViewModel
 {
     public class DocumentoViewModel : INotifyPropertyChanged
     {
+   
         private readonly Documento documento;
 
         public ObservableCollection<PaginaViewModel> Paginas { get; } = new();
@@ -34,9 +35,10 @@ namespace patrimonio_digital.MVVM.ViewModel
             if (item == null)
                 throw new System.ArgumentNullException(nameof(item));
 
+
             string pastaBase = Path.Combine(
                 System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop),
-                "Patrimonio Digital",
+                "digiPat",
                 "Documentos",
                 item.Nome ?? "ItemSemNome"
             );

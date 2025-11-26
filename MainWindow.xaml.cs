@@ -27,6 +27,8 @@ namespace patrimonio_digital
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //MessageBox.Show("MainWindow fechando");//
+            if (DataContext is MainViewModel vm)
+                vm.OnClose();
         }
 
 

@@ -1,5 +1,4 @@
-﻿// MVVM/ViewModel/PaginaViewModel.cs
-using patrimonio_digital.MVVM.Model;
+﻿using patrimonio_digital.MVVM.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 

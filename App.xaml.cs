@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using patrimonio_digital.MVVM.Model;
-using patrimonio_digital.MVVM.View; 
+using patrimonio_digital.MVVM.View;
 
 namespace patrimonio_digital
 {
@@ -24,7 +24,7 @@ namespace patrimonio_digital
                 }
                 catch (Exception ex)
                 {
-                   // MessageBox.Show("Erro ao abrir a MainWindow: " + ex.Message); //
+                    // MessageBox.Show("Erro ao abrir a MainWindow: " + ex.Message); //
                     Shutdown();
                 }
             }

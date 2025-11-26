@@ -4,9 +4,53 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:patrimonio_digital.MVVM.View"
+        xmlns:vm="clr-namespace:patrimonio_digital.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="Auditoria" Height="450" Width="800">
+        Title="Auditoria" MinHeight="350" MinWidth="800" MaxHeight="480"
+        FontFamily="{StaticResource Inter}"
+        Icon="/digipat.ico"
+        Background="{DynamicResource WindowBackgroundBrush}">
+
+
+    <Window.DataContext>
+        <vm:AuditoriaViewModel/>
+    </Window.DataContext>
+
+
     <Grid>
-        
+        <StackPanel VerticalAlignment="Stretch">
+            
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10 10 10 0">
+                <Path Data="M15 10.5C15 12.9853 12.9853 15 10.5 15C8.01472 15 6 12.9853 6 10.5C6 8.01472 8.01472 6 10.5 6C12.9853 6 15 8.01472 15 10.5ZM14.1793 15.2399C13.1632 16.0297 11.8865 16.5 10.5 16.5C7.18629 16.5 4.5 13.8137 4.5 10.5C4.5 7.18629 7.18629 4.5 10.5 4.5C13.8137 4.5 16.5 7.18629 16.5 10.5C16.5 11.8865 16.0297 13.1632 15.2399 14.1792L20.0304 18.9697L18.9697 20.0303L14.1793 15.2399Z"
+           Fill="{DynamicResource ForegroundBrush}"
+           Stretch="Uniform"
+           Width="15"
+           Height="15"
+           Margin="10"/>
+                <Label Foreground="White" FontSize="18" VerticalAlignment="Center" Content="Auditoria"></Label>
+
+            </StackPanel>
+            <Border Background="{DynamicResource WindowBackgroundBrush}" CornerRadius="12" Margin="10">
+            
+            <DataGrid ItemsSource="{Binding Registros}"
+                  AutoGenerateColumns="False"
+                  ColumnHeaderStyle="{StaticResource DarkDataGridHeader}"
+                  RowStyle="{StaticResource DarkDataGridRow}"
+                  Height="370"
+                      Background="{DynamicResource SidebarBackgroundBrush}">
+                
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Usuário" Binding="{Binding Usuario}" />
+                    <DataGridTextColumn Header="Ação" Binding="{Binding Acao}" />
+                    <DataGridTextColumn Header="Item" Binding="{Binding Item}" />
+                    <DataGridTextColumn Header="Data" Binding="{Binding DataHora}" />
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </Border>
+            
+        </StackPanel>
     </Grid>
+    
 </Window>

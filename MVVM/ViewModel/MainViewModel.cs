@@ -1,23 +1,27 @@
 ﻿using patrimonio_digital.Core;
 using patrimonio_digital.MVVM.Model;
+using patrimonio_digital.MVVM.Model;
 using patrimonio_digital.MVVM.View;
+using patrimonio_digital.Services;
 using patrimonio_digital.Utils;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using patrimonio_digital.MVVM.Model;
 
 namespace patrimonio_digital.MVVM.ViewModel
 {
     public class MainViewModel : ObservableObject
     {
-
+        
+        // interfaces e comandos
         public ICommand AbrirJanelaCommand { get; }
         public ICommand FecharJanelaCommand { get; }
         public ICommand ExcluirItemCommand { get; }
         public ICommand AbrirEditorCommand { get; }
+        public ICommand EditarItemCommand { get; }
 
         private string textoPesquisa;
         public string TextoPesquisa
@@ -37,18 +41,36 @@ namespace patrimonio_digital.MVVM.ViewModel
         public ObservableCollection<Item> Itens { get; }
         public ICollectionView ItensView { get; }
 
-        public MainViewModel()
+        // cria a string usuarioLogado que receberá o parâmetro passado pelo login (no caso, o nome do usuário logado) 
+        // a string que recebe o parâmetro é privada
+        private string usuarioLogado;
+        public string UsuarioLogado
         {
+            get => usuarioLogado;
+            set
+            {
+                usuarioLogado = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // também carrega o ViewModel sem parâmetros
+        public MainViewModel() : this("") { } 
+
+        public MainViewModel(string nomeUsuario)
+        {
+            UsuarioLogado = nomeUsuario;
+
+            // construtores dos comandos
             AbrirJanelaCommand = new RelayCommand(AbrirJanela);
-            FecharJanelaCommand = new RelayCommand(FecharJanela);
             ExcluirItemCommand = new RelayCommand(ExcluirItem);
             AbrirEditorCommand = new RelayCommand(AbrirEditor);
+            EditarItemCommand = new RelayCommand(EditarItem);
 
             Itens = ItemStorage.Carregar(); // carrega itens do armazenamento permanente
             ItensView = CollectionViewSource.GetDefaultView(Itens); // exibe 'Itens' disponíveis
             ItensView.Filter = FiltrarItens;
         }
-
         private bool FiltrarItens(object obj)
         {
             if (obj is not Item item) return false;
@@ -73,7 +95,11 @@ namespace patrimonio_digital.MVVM.ViewModel
             {
                 Window janela = tipoJanela switch
                 {
-                    "Catalogar" => new CatalogarItemWindow { DataContext = new CatalogarItemViewModel(Itens) },
+                    "Catalogar" => new CatalogarItemWindow
+                    {
+                        DataContext = new CatalogarItemViewModel(Itens, UsuarioLogado)
+                    },
+
                     "Auditoria" => new Auditoria(),
                     "Usuarios" => new CadastroUsuarioWindow(),
                     "Login" => new Login(),
@@ -82,12 +108,6 @@ namespace patrimonio_digital.MVVM.ViewModel
 
                 janela?.Show();
             }
-        }
-
-        private void FecharJanela(object parameter)
-        {
-            if (parameter is Window janela)
-                janela.Close();
         }
 
         private void ExcluirItem(object parameter)
@@ -104,8 +124,28 @@ namespace patrimonio_digital.MVVM.ViewModel
                 if (resultado == MessageBoxResult.Yes)
                 {
                     Itens.Remove(item);
-                    ItemStorage.Salvar(Itens);
+
+                    AuditoriaService.RegistrarAuditoria(new AuditoriaModel
+                    {
+                        DataHora = DateTime.Now,
+                        Usuario = UsuarioLogado,
+                        Acao = "Exclusão de Item",
+                        Item = item.Nome,
+                    });
                 }
+            }
+        }
+
+        private void EditarItem(object parameter)
+        {
+            if (parameter is Item item)
+            {
+                var janela = new CatalogarItemWindow
+                {
+                    DataContext = new CatalogarItemViewModel(Itens, UsuarioLogado, item)
+                };
+
+                janela.ShowDialog();
             }
         }
 
@@ -116,6 +156,12 @@ namespace patrimonio_digital.MVVM.ViewModel
                 var editor = new EditorDocumentoView(item);
                 editor.ShowDialog();
             }
+        }
+
+        public void OnClose()
+        {
+            ItemStorage.Salvar(Itens);
+            AuditoriaService.SalvarAuditoria();
         }
     }
 }

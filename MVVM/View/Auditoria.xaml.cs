@@ -1,4 +1,5 @@
-﻿using System;
+﻿using patrimonio_digital.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace patrimonio_digital.MVVM.View
         public Auditoria()
         {
             InitializeComponent();
+            AuditoriaService.CarregarAuditoria();
         }
     }
 }

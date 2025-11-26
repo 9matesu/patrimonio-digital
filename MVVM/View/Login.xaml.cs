@@ -1,4 +1,5 @@
 ﻿using patrimonio_digital.MVVM.Model;
+using patrimonio_digital.MVVM.ViewModel;
 using System.Windows;
 
 namespace patrimonio_digital.MVVM.View
@@ -9,7 +10,7 @@ namespace patrimonio_digital.MVVM.View
         {
             InitializeComponent();
         }
-        public Usuario UsuarioLogado { get; private set; }
+        
         private void Entrar_Click(object sender, RoutedEventArgs e)
         {
             var auth = new AuthService();
@@ -17,10 +18,14 @@ namespace patrimonio_digital.MVVM.View
 
             if (usuario != null)
             {
+
+                // após autorizado, inicia MainWindow passando usuario.Nome como parâmetro do MainViewModel
+
                 var mainWindow = new MainWindow();
+                mainWindow.DataContext = new MainViewModel(usuario.Nome);
                 mainWindow.Show();
 
-                this.Close(); // fecha a janela de login
+                this.Close(); 
             }
             else
             {

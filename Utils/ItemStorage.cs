@@ -10,7 +10,7 @@ namespace patrimonio_digital.Utils
 
         private static readonly string pastaDesktop = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-            "Patrimonio Digital");
+            "digiPat");
 
         private static readonly string arquivo = Path.Combine(pastaDesktop, "itens.json");
 
