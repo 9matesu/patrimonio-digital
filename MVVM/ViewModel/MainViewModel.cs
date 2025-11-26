@@ -1,9 +1,9 @@
 ﻿using patrimonio_digital.Core;
 using patrimonio_digital.MVVM.Model;
-using patrimonio_digital.MVVM.Model;
 using patrimonio_digital.MVVM.View;
 using patrimonio_digital.Services;
 using patrimonio_digital.Utils;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -21,17 +21,15 @@ namespace patrimonio_digital.MVVM.ViewModel
             get => _usuarioLogado;
             set
             {
-                _usuarioLogado = value;
+                _usuarioLogado = value ?? throw new ArgumentNullException(nameof(value));
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(PodeCatalogar));
                 OnPropertyChanged(nameof(PodeExcluir));
                 OnPropertyChanged(nameof(PodeGerenciarUsuarios));
                 OnPropertyChanged(nameof(PodeAuditoria));
-
+                OnPropertyChanged(nameof(PodeEditar));
             }
         }
-
-        
 
         public bool PodeCatalogar => UsuarioLogadoBool != null &&
             (UsuarioLogadoBool.Tipo == TipoUsuario.Administrador || UsuarioLogadoBool.Tipo == TipoUsuario.Funcionario);
@@ -93,7 +91,6 @@ namespace patrimonio_digital.MVVM.ViewModel
             UsuarioLogado = nomeUsuario; // recebe o nome do usuário para display
             UsuarioLogadoBool = usuario; // recebe o usuário para as permissões
 
-            // construtores dos comandos
             AbrirJanelaCommand = new RelayCommand(AbrirJanela);
             ExcluirItemCommand = new RelayCommand(ExcluirItem);
             AbrirEditorCommand = new RelayCommand(AbrirEditor);
@@ -104,6 +101,7 @@ namespace patrimonio_digital.MVVM.ViewModel
             ItensView = CollectionViewSource.GetDefaultView(Itens);
             ItensView.Filter = FiltrarItens;
         }
+
         private bool FiltrarItens(object obj)
         {
             if (obj is not Item item) return false;
@@ -214,13 +212,11 @@ namespace patrimonio_digital.MVVM.ViewModel
             {
                 if (PodeEditar)
                 {
-                    // Abre o editor para usuarios com permissão
                     var editor = new EditorDocumentoView(item);
                     editor.ShowDialog();
                 }
                 else
                 {
-                    // Abre o visualizador somente leitura para visitantes
                     var visualizador = new VisualizadorDocumentoView(item);
                     visualizador.DataContext = new VisualizadorDocumentoViewModel(item);
                     visualizador.ShowDialog();
@@ -233,6 +229,5 @@ namespace patrimonio_digital.MVVM.ViewModel
             ItemStorage.Salvar(Itens);
             AuditoriaService.SalvarAuditoria();
         }
-
     }
 }

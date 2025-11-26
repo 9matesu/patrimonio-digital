@@ -1,12 +1,60 @@
 ﻿<Window x:Class="patrimonio_digital.MVVM.View.Usuarios"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:patrimonio_digital.MVVM.View"
-        mc:Ignorable="d"
-        Title="Usuarios" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        xmlns:utils="clr-namespace:patrimonio_digital.Utils"
+        Title="Usuários"
+        Height="500" Width="850"
+        Background="{DynamicResource WindowBackgroundBrush}"
+        Foreground="{DynamicResource ForegroundBrush}">
+
+    <Window.Resources>
+        <utils:NullToBoolConverter x:Key="NullToBoolConverter" />
+    </Window.Resources>
+
+    <DockPanel Margin="10">
+
+        <!-- Barra de ações no topo -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 15">
+            <Button Content="Cadastrar Usuário"
+            Width="140"
+            Margin="0 0 10 0"
+            Click="BtnAbrirCadastro_Click"
+            Style="{DynamicResource EditorButtonTheme}"/>
+            <Button Content="Editar Usuário"
+            Width="140"
+            Margin="0 0 10 0"
+            Click="BtnEditarUsuario_Click"
+            Style="{DynamicResource EditorButtonTheme}"
+            IsEnabled="{Binding ElementName=dgUsuarios, Path=SelectedItem, Converter={StaticResource NullToBoolConverter}}"/>
+            <Button Content="Excluir Usuário"
+            Width="140"
+            Click="BtnExcluirUsuario_Click"
+            Style="{DynamicResource EditorButtonTheme}"
+            IsEnabled="{Binding ElementName=dgUsuarios, Path=SelectedItem, Converter={StaticResource NullToBoolConverter}}"/>
+        </StackPanel>
+
+
+        <!-- DataGrid com tema dark -->
+        <DataGrid x:Name="dgUsuarios"
+                  ItemsSource="{Binding Usuarios}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  Style="{StaticResource DarkDataGrid}"
+                  RowStyle="{StaticResource DarkDataGridRow}"
+                  ColumnHeaderStyle="{StaticResource DarkDataGridHeader}"
+                  AlternatingRowBackground="#203040"
+                  FontSize="14"
+                  GridLinesVisibility="Horizontal"
+                  >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="3*"/>
+                <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}" Width="1.5*"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </DockPanel>
 </Window>

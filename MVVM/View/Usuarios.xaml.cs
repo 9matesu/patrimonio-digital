@@ -1,27 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using patrimonio_digital.MVVM.ViewModel;
+using patrimonio_digital.MVVM.Model;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace patrimonio_digital.MVVM.View
 {
-    /// <summary>
-    /// Lógica interna para Usuarios.xaml
-    /// </summary>
     public partial class Usuarios : Window
     {
+        private UsuariosViewModel ViewModel => (UsuariosViewModel)DataContext;
+
         public Usuarios()
         {
             InitializeComponent();
+            DataContext = new UsuariosViewModel();
         }
+
+        private void BtnAbrirCadastro_Click(object sender, RoutedEventArgs e)
+        {
+            var cadastro = new CadastroUsuarioWindow();
+            cadastro.ShowDialog();
+
+            ViewModel.CarregarUsuarios();
+        }
+
+        private void BtnExcluirUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgUsuarios.SelectedItem is Usuario usuario)
+            {
+                var resultado = MessageBox.Show($"Deseja realmente excluir o usuário \"{usuario.Nome}\"?",
+                    "Confirmar exclusão",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    ViewModel.ExcluirUsuario(usuario);
+                }
+            }
+        }
+        private void BtnEditarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgUsuarios.SelectedItem is Usuario usuario)
+            {
+                var cadastro = new CadastroUsuarioWindow(usuario);
+                cadastro.ShowDialog();
+
+                ViewModel.CarregarUsuarios();
+            }
+        }
+
     }
 }
