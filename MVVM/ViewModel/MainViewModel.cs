@@ -15,8 +15,36 @@ namespace patrimonio_digital.MVVM.ViewModel
 {
     public class MainViewModel : ObservableObject
     {
-        
-        // interfaces e comandos
+        private Usuario _usuarioLogado;
+        public Usuario UsuarioLogado
+        {
+            get => _usuarioLogado;
+            set
+            {
+                _usuarioLogado = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(PodeCatalogar));
+                OnPropertyChanged(nameof(PodeExcluir));
+                OnPropertyChanged(nameof(PodeGerenciarUsuarios));
+                OnPropertyChanged(nameof(PodeAuditoria));
+            }
+        }
+
+        public bool PodeCatalogar => UsuarioLogado != null &&
+            (UsuarioLogado.Tipo == TipoUsuario.Administrador || UsuarioLogado.Tipo == TipoUsuario.Funcionario);
+
+        public bool PodeExcluir => UsuarioLogado != null &&
+            UsuarioLogado.Tipo == TipoUsuario.Administrador;
+
+        public bool PodeGerenciarUsuarios => UsuarioLogado != null &&
+            UsuarioLogado.Tipo == TipoUsuario.Administrador;
+
+        public bool PodeAuditoria => UsuarioLogado != null &&
+            UsuarioLogado.Tipo == TipoUsuario.Administrador;
+
+        public bool PodeEditar => UsuarioLogado != null &&
+            UsuarioLogado.Tipo != TipoUsuario.Visitante;
+
         public ICommand AbrirJanelaCommand { get; }
         public ICommand FecharJanelaCommand { get; }
         public ICommand ExcluirItemCommand { get; }
@@ -33,7 +61,7 @@ namespace patrimonio_digital.MVVM.ViewModel
                 {
                     textoPesquisa = value;
                     OnPropertyChanged();
-                    ItensView.Refresh(); // atualiza a filtragem ao digitar
+                    ItensView.Refresh();
                 }
             }
         }
@@ -67,8 +95,8 @@ namespace patrimonio_digital.MVVM.ViewModel
             AbrirEditorCommand = new RelayCommand(AbrirEditor);
             EditarItemCommand = new RelayCommand(EditarItem);
 
-            Itens = ItemStorage.Carregar(); // carrega itens do armazenamento permanente
-            ItensView = CollectionViewSource.GetDefaultView(Itens); // exibe 'Itens' disponíveis
+            Itens = ItemStorage.Carregar();
+            ItensView = CollectionViewSource.GetDefaultView(Itens);
             ItensView.Filter = FiltrarItens;
         }
         private bool FiltrarItens(object obj)
@@ -93,25 +121,45 @@ namespace patrimonio_digital.MVVM.ViewModel
         {
             if (parameter is string tipoJanela)
             {
+                if (tipoJanela == "Usuarios" && !PodeGerenciarUsuarios)
+                {
+                    MessageBox.Show("Acesso negado: você não tem permissão para gerenciar usuários.");
+                    return;
+                }
+
+                if (tipoJanela == "Auditoria" && !PodeAuditoria)
+                {
+                    MessageBox.Show("Acesso negado: você não tem permissão para acessar Auditoria.");
+                    return;
+                }
+
                 Window janela = tipoJanela switch
                 {
-                    "Catalogar" => new CatalogarItemWindow
-                    {
-                        DataContext = new CatalogarItemViewModel(Itens, UsuarioLogado)
-                    },
-
-                    "Auditoria" => new Auditoria(),
-                    "Usuarios" => new CadastroUsuarioWindow(),
+                    "Catalogar" when PodeCatalogar => new CatalogarItemWindow { DataContext = new CatalogarItemViewModel(Itens) },
+                    "Auditoria" when PodeAuditoria => new Auditoria(),
+                    "Usuarios" when PodeGerenciarUsuarios => new CadastroUsuarioWindow(),
                     "Login" => new Login(),
                     _ => null
                 };
 
-                janela?.Show();
+                if (janela == null)
+                {
+                    MessageBox.Show("Acesso negado para essa funcionalidade.");
+                    return;
+                }
+
+                janela.Show();
             }
         }
 
         private void ExcluirItem(object parameter)
         {
+            if (!PodeExcluir)
+            {
+                MessageBox.Show("Acesso negado: você não tem permissão para excluir itens.");
+                return;
+            }
+
             if (parameter is Item item && Itens.Contains(item))
             {
                 var resultado = MessageBox.Show(
@@ -153,15 +201,20 @@ namespace patrimonio_digital.MVVM.ViewModel
         {
             if (parameter is Item item)
             {
-                var editor = new EditorDocumentoView(item);
-                editor.ShowDialog();
+                if (PodeEditar)
+                {
+                    // Abre o editor para usuarios com permissão
+                    var editor = new EditorDocumentoView(item);
+                    editor.ShowDialog();
+                }
+                else
+                {
+                    // Abre o visualizador somente leitura para visitantes
+                    var visualizador = new VisualizadorDocumentoView(item);
+                    visualizador.DataContext = new VisualizadorDocumentoViewModel(item);
+                    visualizador.ShowDialog();
+                }
             }
-        }
-
-        public void OnClose()
-        {
-            ItemStorage.Salvar(Itens);
-            AuditoriaService.SalvarAuditoria();
         }
     }
 }

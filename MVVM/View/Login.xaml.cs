@@ -11,6 +11,7 @@ namespace patrimonio_digital.MVVM.View
             InitializeComponent();
         }
         
+
         private void Entrar_Click(object sender, RoutedEventArgs e)
         {
             var auth = new AuthService();
