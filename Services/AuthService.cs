@@ -13,6 +13,8 @@ public class AuthService
     private List<Usuario> _users = new();
     private const string UsersFilePath = "usuarios.json";
 
+    public Usuario? UsuarioLogado { get; private set; }
+
     public AuthService()
     {
         LoadUsersFromJson(UsersFilePath);
@@ -58,7 +60,15 @@ public class AuthService
         var usuario = _users.FirstOrDefault(u => u.Nome.Equals(nome.Trim(), StringComparison.OrdinalIgnoreCase));
         if (usuario == null) return null;
 
-        return VerifyPassword(senha, usuario.Senha) ? usuario : null;
+        if (VerifyPassword(senha, usuario.Senha))
+        {
+            UsuarioLogado = usuario;
+            return usuario;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     #endregion
