@@ -13,8 +13,13 @@
         Icon="/digipat.ico">
 
 
+    <Window.Resources>
+        <Style TargetType="Window">
+            <Setter Property="Tag" 
+                Value="{Binding RelativeSource={RelativeSource Self}}" />
+        </Style>
+    </Window.Resources>
 
-    
     <Border Background="Transparent" CornerRadius="0,0,20,20">
 
         <Grid Margin="10 10 10 10">
@@ -82,7 +87,10 @@
                     <Button Content="Registrar" Foreground="{DynamicResource SecondaryForegroundBrush}" Width="Auto" Height="50" Margin="0 15 0 0"
                     Command="{Binding RegistrarCommand}"
                     Style="{DynamicResource EditorButtonTheme}"
-                    VerticalAlignment="Bottom"/>
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                    VerticalAlignment="Bottom"
+                            IsDefault="True"/>
+                    
                 </StackPanel>
 
             </StackPanel>

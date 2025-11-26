@@ -1,15 +1,23 @@
 ﻿using patrimonio_digital.Core;
 using patrimonio_digital.MVVM.Model;
+using patrimonio_digital.MVVM.View;
 using patrimonio_digital.Services;
 using patrimonio_digital.Utils;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace patrimonio_digital.MVVM.ViewModel
 {
     public class CatalogarItemViewModel : ObservableObject
     {
+
+        // interfaces para fechar janela atual (catalogaritemwindow)
+        public Window JanelaAtual { get; set; }
+        public ICommand FecharCommand { get; }
+
+        // 
         public string UsuarioLogado { get; set; }
 
         // campos de binding
@@ -19,42 +27,36 @@ namespace patrimonio_digital.MVVM.ViewModel
             get => _nomeNovoItem;
             set { if (_nomeNovoItem == value) return; _nomeNovoItem = value; OnPropertyChanged(); }
         }
-
         private string _autorNovoItem;
         public string AutorNovoItem
         {
             get => _autorNovoItem;
             set { if (_autorNovoItem == value) return; _autorNovoItem = value; OnPropertyChanged(); }
         }
-
         private string _dataNovoItem;
         public string DataNovoItem
         {
             get => _dataNovoItem;
             set { if (_dataNovoItem == value) return; _dataNovoItem = value; OnPropertyChanged(); }
         }
-
         private string _origemNovoItem;
         public string OrigemNovoItem
         {
             get => _origemNovoItem;
             set { if (_origemNovoItem == value) return; _origemNovoItem = value; OnPropertyChanged(); }
         }
-
         private string _tipoNovoItem;
         public string TipoNovoItem
         {
             get => _tipoNovoItem;
             set { if (_tipoNovoItem == value) return; _tipoNovoItem = value; OnPropertyChanged(); }
         }
-
         private string _estadoConsNovoItem;
         public string EstadoConsNovoItem
         {
             get => _estadoConsNovoItem;
             set { if (_estadoConsNovoItem == value) return; _estadoConsNovoItem = value; OnPropertyChanged(); }
         }
-
         private string _setorFisicoNovoItem;
         public string SetorFisicoNovoItem
         {
@@ -69,12 +71,13 @@ namespace patrimonio_digital.MVVM.ViewModel
         // item em edição (null => novo)
         private Item ItemEditando { get; }
 
-        // listas auxiliares
+        // lista: estado de conservação
         public ObservableCollection<string> EstadoCons { get; set; } = new ObservableCollection<string>
         {
             "Novo", "Bom", "Regular", "Ruim"
         };
 
+        // lista: tipo de documento
         public ObservableCollection<string> Tipo { get; set; } = new ObservableCollection<string>
         {
             "Fotografia", "Declaração", "Boletim de Ocorrência", "Escritura"
@@ -92,6 +95,13 @@ namespace patrimonio_digital.MVVM.ViewModel
             Itens = itensCompartilhados ?? throw new ArgumentNullException(nameof(itensCompartilhados));
             UsuarioLogado = usuarioLogado;
             ItemEditando = itemParaEditar;
+
+            // construtor para fechar janela
+            FecharCommand = new RelayCommand(janela =>
+            {
+                if (janela is Window w)
+                    w.Close();
+            });
 
             RegistrarCommand = new RelayCommand(_ => RegistrarItem());
 
@@ -155,7 +165,7 @@ namespace patrimonio_digital.MVVM.ViewModel
                     Acao = "Edição de Item",
                     Item = NomeNovoItem
                 });
-                Console.WriteLine("Registro adicionado, total: " + AuditoriaService.ObterRegistros().Count);
+                
             }
 
             // limpa campos
@@ -166,6 +176,8 @@ namespace patrimonio_digital.MVVM.ViewModel
             TipoNovoItem = string.Empty;
             EstadoConsNovoItem = string.Empty;
             SetorFisicoNovoItem = string.Empty;
+
+            FecharCommand.Execute(JanelaAtual);
 
             // ItemStorage.Salvar(Itens); - salva no armazenamento permanente após registrar, desabilitado
         }

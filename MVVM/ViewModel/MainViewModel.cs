@@ -80,7 +80,7 @@ namespace patrimonio_digital.MVVM.ViewModel
             get => usuarioLogado;
             set
             {
-                UsuarioLogadoBool.Nome = value;
+                usuarioLogado = value;
                 OnPropertyChanged();
             }
         }
@@ -88,15 +88,17 @@ namespace patrimonio_digital.MVVM.ViewModel
         // também carrega o ViewModel sem parâmetros
         // public MainViewModel() : this("") { } 
 
-        public MainViewModel(Usuario usuario)
+        public MainViewModel(Usuario usuario, string nomeUsuario)
         {
-            UsuarioLogadoBool = usuario;
+            UsuarioLogado = nomeUsuario; // recebe o nome do usuário para display
+            UsuarioLogadoBool = usuario; // recebe o usuário para as permissões
 
             // construtores dos comandos
             AbrirJanelaCommand = new RelayCommand(AbrirJanela);
             ExcluirItemCommand = new RelayCommand(ExcluirItem);
             AbrirEditorCommand = new RelayCommand(AbrirEditor);
             EditarItemCommand = new RelayCommand(EditarItem);
+            FecharJanelaCommand = new RelayCommand(FecharJanela);
 
             Itens = ItemStorage.Carregar();
             ItensView = CollectionViewSource.GetDefaultView(Itens);
@@ -139,7 +141,7 @@ namespace patrimonio_digital.MVVM.ViewModel
                 Window janela = tipoJanela switch
                 {
                     "Catalogar" when PodeCatalogar => new CatalogarItemWindow { DataContext = new CatalogarItemViewModel(Itens, UsuarioLogado) },
-                    "Auditoria" when PodeAuditoria => new Auditoria(),
+                    "Auditoria" when PodeAuditoria => new Auditoria { DataContext = new AuditoriaViewModel() },
                     "Usuarios" when PodeGerenciarUsuarios => new CadastroUsuarioWindow(),
                     "Login" => new Login(),
                     _ => null
@@ -155,6 +157,12 @@ namespace patrimonio_digital.MVVM.ViewModel
             }
         }
 
+        public void FecharJanela(object parameter)
+        {
+            if (parameter is Window janela)
+                janela.Close();
+
+        }
         private void ExcluirItem(object parameter)
         {
             if (!PodeExcluir)

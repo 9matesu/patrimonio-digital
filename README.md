@@ -1,11 +1,11 @@
-# Patrimônio Digital
+# digiPat
 
 ## Descrição
-**Patrimônio Digital** é um **Sistema de Gerenciamento de Acervos** sendo desenvolvido em C# com **WPF**, voltado para a catalogação, organização e controle de itens do Museu Major Novaes. 
-O projeto é parte da curricularização do curso de Análise e Desenvolvimento de Sistemas, focando em conceitos de **orientação a objetos**, **interfaces gráficas** e **persistência simples** sem o uso de banco de dados.
+**digiPat** é um **Sistema de Gestão de Documentos** sendo desenvolvido em C# e voltado para a catalogação, organização e controle de itens. 
+O projeto é parte da curricularização do curso de Análise e Desenvolvimento de Sistemas pela FATEC Cruzeiro, focando em conceitos de **orientação a objetos**, **interfaces gráficas** e **persistência simples** sem o uso de banco de dados.
 
 ## Funcionalidades
-- Cadastro de itens do acervo inclui:
+- Cadastro de itens no sistema inclui:
   - Nome do item
   - Tipo do item
   - Setor (para localização física)
@@ -13,12 +13,11 @@ O projeto é parte da curricularização do curso de Análise e Desenvolvimento 
   - Data
   - Estado de conservação
   - Origem
-  - Descrição
+  - Conteúdo do item
 - Listagem de todos os itens cadastrados
 - Edição e remoção de itens
-- Armazenamento em memória ou arquivo local + exportar em formato de planilha
+- Armazenamento em memória e arquivo local
 - Autenticação e Autorização
-- Interface gráfica via WPF
 
 ## Como Executar
 1. Clone este repositório:

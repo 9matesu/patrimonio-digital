@@ -14,8 +14,14 @@ namespace patrimonio_digital.Services
     {
 
         // todas as entradas na auditoria serão armazenadas numa lista _registros, que carrega objetos da classe AuditoriaModel
-        private static readonly List<AuditoriaModel> _registros = new(); 
-        private static readonly string caminho = "auditoria.json";
+        private static readonly List<AuditoriaModel> _registros = new();
+
+        private static readonly string pastaDesktop = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+            "digiPat");
+
+        private static readonly string caminho = Path.Combine(pastaDesktop, "auditoria.json");
+
 
         public static void RegistrarAuditoria(AuditoriaModel registro)
         {
