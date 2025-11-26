@@ -27,8 +27,11 @@ namespace patrimonio_digital.MVVM.ViewModel
                 OnPropertyChanged(nameof(PodeExcluir));
                 OnPropertyChanged(nameof(PodeGerenciarUsuarios));
                 OnPropertyChanged(nameof(PodeAuditoria));
+
             }
         }
+
+        
 
         public bool PodeCatalogar => UsuarioLogadoBool != null &&
             (UsuarioLogadoBool.Tipo == TipoUsuario.Administrador || UsuarioLogadoBool.Tipo == TipoUsuario.Funcionario);
@@ -77,17 +80,17 @@ namespace patrimonio_digital.MVVM.ViewModel
             get => usuarioLogado;
             set
             {
-                usuarioLogado = value;
+                UsuarioLogadoBool.Nome = value;
                 OnPropertyChanged();
             }
         }
 
         // também carrega o ViewModel sem parâmetros
-        public MainViewModel() : this("") { } 
+        // public MainViewModel() : this("") { } 
 
-        public MainViewModel(string nomeUsuario)
+        public MainViewModel(Usuario usuario)
         {
-            UsuarioLogado = nomeUsuario;
+            UsuarioLogadoBool = usuario;
 
             // construtores dos comandos
             AbrirJanelaCommand = new RelayCommand(AbrirJanela);

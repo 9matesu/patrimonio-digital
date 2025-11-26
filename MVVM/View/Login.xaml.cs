@@ -23,7 +23,7 @@ namespace patrimonio_digital.MVVM.View
                 // após autorizado, inicia MainWindow passando usuario.Nome como parâmetro do MainViewModel
 
                 var mainWindow = new MainWindow();
-                mainWindow.DataContext = new MainViewModel(usuario.Nome);
+                mainWindow.DataContext = new MainViewModel(usuario);
                 mainWindow.Show();
 
                 this.Close(); 

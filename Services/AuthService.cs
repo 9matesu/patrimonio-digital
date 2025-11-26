@@ -10,10 +10,11 @@ using patrimonio_digital.MVVM.Model;
 
 public class AuthService
 {
+ 
     private List<Usuario> _users = new();
     private const string UsersFilePath = "usuarios.json";
 
-    public Usuario? UsuarioLogado { get; private set; }
+    public static Usuario? UsuarioLogado { get;  set; }
 
     public AuthService()
     {

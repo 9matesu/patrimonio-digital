@@ -63,7 +63,7 @@
                                 Height="15"
                                 Margin="10 0 0 0"/>
 							<RadioButton x:Name="btnCatalogo" Command="{Binding AbrirJanelaCommand}" CommandParameter="Catalogar" Content= "Registrar Item" Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"
-                                         IsEnabled="{Binding PodeCatalogar}"/>
+                                         />
 						</StackPanel>
 
                         <StackPanel Orientation="Horizontal" Style="{DynamicResource StackPanelSidebar}" Visibility="{Binding PodeGerenciarUsuarios, Converter={StaticResource BoolToVisibilityConverter}}">
