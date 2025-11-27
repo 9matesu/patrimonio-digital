@@ -15,6 +15,8 @@ namespace patrimonio_digital.MVVM.ViewModel
 {
     public class MainViewModel : ObservableObject
     {
+
+        // objeto usuário que é passado para validar a visualização de funções na interface
         private Usuario _usuarioLogado;
         public Usuario UsuarioLogadoBool
         {
@@ -140,7 +142,7 @@ namespace patrimonio_digital.MVVM.ViewModel
                 {
                     "Catalogar" when PodeCatalogar => new CatalogarItemWindow { DataContext = new CatalogarItemViewModel(Itens, UsuarioLogado) },
                     "Auditoria" when PodeAuditoria => new Auditoria { DataContext = new AuditoriaViewModel() },
-                    "Usuarios" when PodeGerenciarUsuarios => new CadastroUsuarioWindow(),
+                    "Usuarios" when PodeGerenciarUsuarios => new Usuarios(),
                     "Login" => new Login(),
                     _ => null
                 };

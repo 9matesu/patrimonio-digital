@@ -84,7 +84,7 @@
                 </StackPanel>
 
                 <StackPanel>
-                    <Button Content="Registrar" Foreground="{DynamicResource SecondaryForegroundBrush}" Width="Auto" Height="50" Margin="0 15 0 0"
+                    <Button Content="Registrar" Foreground="{DynamicResource SecondaryForegroundBrush}" Width="Auto" Height="45" Margin="0 15 0 0"
                     Command="{Binding RegistrarCommand}"
                     Style="{DynamicResource EditorButtonTheme}"
                             CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"

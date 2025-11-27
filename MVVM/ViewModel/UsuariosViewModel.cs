@@ -23,12 +23,15 @@ namespace patrimonio_digital.MVVM.ViewModel
 
         public UsuariosViewModel()
         {
+            Usuarios = new ObservableCollection<Usuario>();
             CarregarUsuarios();
         }
 
         public void CarregarUsuarios()
         {
-            Usuarios = new ObservableCollection<Usuario>(auth.GetAllUsers());
+            Usuarios.Clear();
+            foreach (var u in auth.GetAllUsers())
+                Usuarios.Add(u);
         }
 
         public void ExcluirUsuario(Usuario usuario)
@@ -39,7 +42,7 @@ namespace patrimonio_digital.MVVM.ViewModel
             }
             else
             {
-                // Pode mostrar mensagem de erro se preferir
+                
             }
         }
 

@@ -5,16 +5,30 @@
         Title="Usuários"
         Height="500" Width="850"
         Background="{DynamicResource WindowBackgroundBrush}"
-        Foreground="{DynamicResource ForegroundBrush}">
+        Foreground="{DynamicResource ForegroundBrush}"
+        FontFamily="{StaticResource Inter}" Icon="/digipat.ico">
 
     <Window.Resources>
         <utils:NullToBoolConverter x:Key="NullToBoolConverter" />
     </Window.Resources>
 
-    <DockPanel Margin="10">
 
+    
+    
+    <StackPanel Margin="10">
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10 10 10 10" DockPanel.Dock="Top">
+            <Path Data="M15 10.5C15 12.9853 12.9853 15 10.5 15C8.01472 15 6 12.9853 6 10.5C6 8.01472 8.01472 6 10.5 6C12.9853 6 15 8.01472 15 10.5ZM14.1793 15.2399C13.1632 16.0297 11.8865 16.5 10.5 16.5C7.18629 16.5 4.5 13.8137 4.5 10.5C4.5 7.18629 7.18629 4.5 10.5 4.5C13.8137 4.5 16.5 7.18629 16.5 10.5C16.5 11.8865 16.0297 13.1632 15.2399 14.1792L20.0304 18.9697L18.9697 20.0303L14.1793 15.2399Z"
+       Fill="{DynamicResource ForegroundBrush}"
+       Stretch="Uniform"
+       Width="15"
+       Height="15"
+       Margin="10"/>
+            <Label Foreground="White" FontSize="18" VerticalAlignment="Center" Content="Usuários"></Label>
+        </StackPanel>
+        
         <!-- Barra de ações no topo -->
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 15">
+        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
             <Button Content="Cadastrar Usuário"
             Width="140"
             Margin="0 0 10 0"
@@ -35,6 +49,7 @@
 
 
         <!-- DataGrid com tema dark -->
+        <StackPanel Margin="10">
         <DataGrid x:Name="dgUsuarios"
                   ItemsSource="{Binding Usuarios}"
                   AutoGenerateColumns="False"
@@ -56,5 +71,7 @@
             </DataGrid.Columns>
 
         </DataGrid>
-    </DockPanel>
+        </StackPanel>
+        
+    </StackPanel>
 </Window>

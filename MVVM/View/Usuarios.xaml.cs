@@ -6,12 +6,14 @@ namespace patrimonio_digital.MVVM.View
 {
     public partial class Usuarios : Window
     {
-        private UsuariosViewModel ViewModel => (UsuariosViewModel)DataContext;
+
+        private readonly UsuariosViewModel ViewModel;
 
         public Usuarios()
         {
             InitializeComponent();
-            DataContext = new UsuariosViewModel();
+            ViewModel = new UsuariosViewModel();
+            DataContext = ViewModel;
         }
 
         private void BtnAbrirCadastro_Click(object sender, RoutedEventArgs e)

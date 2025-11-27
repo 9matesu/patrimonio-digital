@@ -36,7 +36,7 @@
                       Width="15"
                       Height="15"
                       Margin="10"/>
-                <TextBlock Text="{Binding UsuarioNome, StringFormat='Olá, {0}!'}" FontSize="15" Foreground="{DynamicResource ForegroundBrush}" Margin="0 6" FontWeight="Regular" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding UsuarioLogado, StringFormat='Olá, {0}!'}" FontSize="15" Foreground="{DynamicResource ForegroundBrush}" Margin="0 6" FontWeight="Regular" HorizontalAlignment="Left" VerticalAlignment="Center" />
 
             </StackPanel>
 

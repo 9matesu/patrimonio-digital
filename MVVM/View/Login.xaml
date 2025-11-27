@@ -2,13 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Login"
-        Height="500" Width="500"
+        Height="350" Width="350"
         WindowStartupLocation="CenterScreen"
         FontFamily="{StaticResource Inter}">
 
 	<Border Background="{StaticResource WindowBackgroundBrush}" CornerRadius="0" Padding="0" Margin="0">
         
-		<StackPanel HorizontalAlignment="Center" Width="Auto" VerticalAlignment="Center">
+		<StackPanel HorizontalAlignment="Center" Width="Auto" VerticalAlignment="Center" Margin="10">
             
             <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Path Data="M6.69 2a1.75 1.75 0 00-1.75 1.756L5 21.253a.75.75 0 001.219.583L12 17.21l5.782 4.625A.75.75 0 0019 21.25V3.75A1.75 1.75 0 0017.25 2H6.69z"

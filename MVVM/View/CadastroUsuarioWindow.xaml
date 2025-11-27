@@ -6,7 +6,8 @@
         Height="290"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource WindowBackgroundBrush}"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        FontFamily="{StaticResource Inter}" Icon="/digipat.ico">
 
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="260">
 
