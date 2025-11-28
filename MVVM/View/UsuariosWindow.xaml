@@ -5,7 +5,10 @@
         Title="Usuários"
         Height="500" Width="850"
         Background="{DynamicResource WindowBackgroundBrush}"
-        Foreground="{DynamicResource ForegroundBrush}">
+        Foreground="{DynamicResource ForegroundBrush}"
+        FontFamily="{StaticResource Inter}"
+Icon="/digipat.ico"
+        >
 
 	<Window.Resources>
 		<utils:NullToBoolConverter x:Key="NullToBoolConverter" />

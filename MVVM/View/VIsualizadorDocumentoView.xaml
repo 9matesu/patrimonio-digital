@@ -2,17 +2,54 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Visualizador de Documento"
-        Height="600" Width="800">
+        Height="600" Width="800"
+        Background="{DynamicResource WindowBackgroundBrush}"
+        FontFamily="{StaticResource Inter}"
+        Icon="/digipat.ico">
 
     <Grid Margin="10">
         <StackPanel>
-            <TextBlock Text="{Binding PaginaAtual.Numero, StringFormat='Pagina {0}'}" FontWeight="Bold" FontSize="16" Margin="0 0 0 10"/>
-            <TextBox Text="{Binding PaginaAtual.Conteudo}" IsReadOnly="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Height="400"/>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
-                <Button Content="Anterior" Command="{Binding AnteriorCommand}" Margin="5"/>
-                <Button Content="Proxima" Command="{Binding ProximaCommand}" Margin="5"/>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                <Path Data="M8.56078 20.2501L20.5608 8.25011L15.7501 3.43945L3.75012 15.4395V20.2501H8.56078ZM15.7501 5.56077L18.4395 8.25011L16.5001 10.1895L13.8108 7.50013L15.7501 5.56077ZM12.7501 8.56079L15.4395 11.2501L7.93946 18.7501H5.25012L5.25012 16.0608L12.7501 8.56079Z"
+Fill="{DynamicResource ForegroundBrush}"
+Stretch="Uniform"
+Width="15"
+Height="15"
+Margin="10"/>
+                <Label Foreground="White" FontSize="18" VerticalAlignment="Center" Content="Visualizador de Documento"></Label>
+
             </StackPanel>
+            <TextBlock Text="{Binding PaginaAtual.Numero, StringFormat='Pagina {0}'}"
+                       FontWeight="Bold"
+                       FontSize="16"
+                       Foreground="{DynamicResource ForegroundBrush}"
+                       Margin="0 0 0 10"/>
+
+            <TextBox Text="{Binding PaginaAtual.Conteudo}"
+                     Style="{StaticResource TextBoxTheme}"
+                     IsReadOnly="True"
+                     VerticalScrollBarVisibility="Auto"
+                     TextWrapping="Wrap"
+                     Height="400"
+                     Margin="10"/>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0 10 0 0">
+
+                <Button Content="Anterior"
+                        Command="{Binding AnteriorCommand}"
+                        Style="{StaticResource EditorButtonTheme}"
+                        Margin="5"/>
+
+                <Button Content="Proxima"
+                        Command="{Binding ProximaCommand}"
+                        Style="{StaticResource EditorButtonTheme}"
+                        Margin="5"/>
+
+            </StackPanel>
+
         </StackPanel>
     </Grid>
 </Window>

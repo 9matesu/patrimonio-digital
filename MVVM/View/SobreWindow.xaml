@@ -1,0 +1,49 @@
+﻿<Window x:Class="patrimonio_digital.MVVM.View.SobreWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:patrimonio_digital.MVVM.View"
+        mc:Ignorable="d"
+        FontFamily="Inter"
+        Title="Sobre" Height="300" Width="300"
+        Background="Transparent" WindowStyle="None">
+    <Grid>
+
+        <Border Background="{DynamicResource WindowBackgroundBrush}" CornerRadius="25">
+
+            <StackPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                 <StackPanel Margin="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Path Data="M6.69 2a1.75 1.75 0 00-1.75 1.756L5 21.253a.75.75 0 001.219.583L12 17.21l5.782 4.625A.75.75 0 0019 21.25V3.75A1.75 1.75 0 0017.25 2H6.69z"
+         Fill="{DynamicResource ForegroundBrush}"
+         Stretch="Uniform"
+         Width="20"
+         Height="20"
+         Margin="10"/>
+                <TextBlock Text="digiPat" FontSize="20" Foreground="{DynamicResource ForegroundBrush}" Margin="10" FontWeight="Bold" HorizontalAlignment="Center" />
+                </StackPanel>
+
+                <StackPanel>
+                    
+                    <TextBlock Text="Sistema de Gestão de Documentos" FontSize="5" Foreground="{DynamicResource ForegroundBrush}" Margin="0" FontWeight="Regular" HorizontalAlignment="Center" />
+                    <TextBlock  TextWrapping="Wrap"  FontSize="5.5" Foreground="{DynamicResource ForegroundBrush}" Margin="10" FontWeight="UltraLight" HorizontalAlignment="Center">
+                       Software de gerenciamento e auditoria de patrimônio desenvolvido em 2025 para o programa ACELERA da FATEC Cruzeiro. <LineBreak/> 
+                         <LineBreak/> 
+                        Versão: 0.1.0a <LineBreak/>
+                         <LineBreak/> 
+                        Licença GPL-3.0. <LineBreak/> 
+                       
+                        
+                    </TextBlock>
+
+                    <TextBlock Text="Cruzeiro, 2025" FontSize="5" Foreground="{DynamicResource ForegroundBrush}" Margin="0" FontWeight="Regular" HorizontalAlignment="Center" />
+
+
+                </StackPanel>
+                
+            </StackPanel>
+
+        </Border>
+        
+    </Grid>
+</Window>

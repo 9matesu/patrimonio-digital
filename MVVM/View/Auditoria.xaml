@@ -31,6 +31,7 @@
                 <Label Foreground="White" FontSize="18" VerticalAlignment="Center" Content="Auditoria"></Label>
 
             </StackPanel>
+            
             <Border Background="{DynamicResource WindowBackgroundBrush}" CornerRadius="12" Margin="10">
             
             <DataGrid ItemsSource="{Binding Registros}"

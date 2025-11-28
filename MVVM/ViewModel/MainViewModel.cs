@@ -48,12 +48,15 @@ namespace patrimonio_digital.MVVM.ViewModel
         public bool PodeEditar => UsuarioLogadoBool != null &&
             UsuarioLogadoBool.Tipo != TipoUsuario.Visitante;
 
+        // declaração de interfaces de comando
         public ICommand AbrirJanelaCommand { get; }
         public ICommand FecharJanelaCommand { get; }
         public ICommand ExcluirItemCommand { get; }
         public ICommand AbrirEditorCommand { get; }
         public ICommand EditarItemCommand { get; }
 
+
+        // texto da pesquisa
         private string textoPesquisa;
         public string TextoPesquisa
         {
@@ -69,6 +72,7 @@ namespace patrimonio_digital.MVVM.ViewModel
             }
         }
 
+        // lista de itens registrados
         public ObservableCollection<Item> Itens { get; }
         public ICollectionView ItensView { get; }
 
@@ -93,17 +97,21 @@ namespace patrimonio_digital.MVVM.ViewModel
             UsuarioLogado = nomeUsuario; // recebe o nome do usuário para display
             UsuarioLogadoBool = usuario; // recebe o usuário para as permissões
 
+            // construtores de comando
             AbrirJanelaCommand = new RelayCommand(AbrirJanela);
             ExcluirItemCommand = new RelayCommand(ExcluirItem);
             AbrirEditorCommand = new RelayCommand(AbrirEditor);
             EditarItemCommand = new RelayCommand(EditarItem);
             FecharJanelaCommand = new RelayCommand(FecharJanela);
 
+
+            // carrega do armazenamento permanente ao instanciar a tela principal
             Itens = ItemStorage.Carregar();
             ItensView = CollectionViewSource.GetDefaultView(Itens);
             ItensView.Filter = FiltrarItens;
         }
 
+        // algoritmo de filtragem
         private bool FiltrarItens(object obj)
         {
             if (obj is not Item item) return false;
@@ -143,6 +151,7 @@ namespace patrimonio_digital.MVVM.ViewModel
                     "Catalogar" when PodeCatalogar => new CatalogarItemWindow { DataContext = new CatalogarItemViewModel(Itens, UsuarioLogado) },
                     "Auditoria" when PodeAuditoria => new Auditoria { DataContext = new AuditoriaViewModel() },
                     "Usuarios" when PodeGerenciarUsuarios => new Usuarios(),
+                    "Sobre" => new SobreWindow(),
                     "Login" => new Login(),
                     _ => null
                 };
