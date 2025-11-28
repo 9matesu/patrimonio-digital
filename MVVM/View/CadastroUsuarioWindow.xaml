@@ -44,6 +44,7 @@
                 Height="32"
                 Margin="0,6,0,0"
                 HorizontalAlignment="Center"
+                IsDefault="True"
                 Command="{Binding SalvarCommand}"
                 Style="{DynamicResource EditorButtonTheme}" />
 	</StackPanel>

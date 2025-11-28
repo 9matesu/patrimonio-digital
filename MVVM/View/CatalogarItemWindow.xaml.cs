@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using patrimonio_digital.MVVM.Model;
+using patrimonio_digital.MVVM.ViewModel;
 
 namespace patrimonio_digital.MVVM.View
 {
@@ -19,9 +22,13 @@ namespace patrimonio_digital.MVVM.View
     /// </summary>
     public partial class CatalogarItemWindow : Window
     {
-        public CatalogarItemWindow()
+        
+
+        public CatalogarItemWindow() 
         {
             InitializeComponent();
+
+        
         }
     }
 }

@@ -156,7 +156,7 @@
                     <Setter Property="Padding" Value="6"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource ForegroundBrush}"/>
+                            <Setter Property="Background" Value="Transparent"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background" Value="{DynamicResource ForegroundBrush}"/>
@@ -189,21 +189,31 @@
                                 <!-- ToggleButton: controla IsDropDownOpen -->
                                 <!-- Está por cima do canto direito; expandir Width para cobrir mais área se desejar -->
                                 <ToggleButton x:Name="PART_Button"
-                                          Width="36"
-                                          HorizontalAlignment="Right"
-                                          VerticalAlignment="Stretch"
-                                          Focusable="False"
-                                          Background="Transparent"
-                                          BorderThickness="0"
-                                          IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
-                                    <!-- visual da seta -->
-                                    <Path Data="M0,0 L10,0 L5,6 Z"
-                                      Fill="{DynamicResource ForegroundBrush}"
-                                      Width="10"
-                                      Height="6"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"/>
+                                  Width="36"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Stretch"
+                                  Focusable="False"
+                                  Background="Transparent"
+                                  BorderThickness="0"
+                                  IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                    
+                                  <ToggleButton.Template>
+                                      
+                                      <ControlTemplate TargetType="ToggleButton">
+                                          <Grid>
+                                          <Path Data="M0,0 L10,0 L5,6 Z"
+                                          Fill="{DynamicResource ForegroundBrush}"
+                                          Width="10"
+                                          Height="6"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                                                                    
+                                            </Grid>
+                                        </ControlTemplate>
+                                      
+                                    </ToggleButton.Template>
                                 </ToggleButton>
+                                
                             </Grid>
                         </Border>
 
@@ -234,7 +244,7 @@
                             <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
                         </Trigger>
                         <Trigger Property="IsDropDownOpen" Value="True">
-                            <Setter TargetName="Border" Property="BorderBrush" Value="Transparent"/>
+                            <Setter TargetName="Border" Property="BorderBrush" Value="#31a9be"/>
                         </Trigger>
                         <!-- Quando não tem itens -->
                         <Trigger Property="HasItems" Value="False">
@@ -328,7 +338,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}" />
         <Setter Property="BorderThickness" Value="0,0,0,0.6" />
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="8,4"/>
         <Setter Property="Cursor" Value="Hand"/>

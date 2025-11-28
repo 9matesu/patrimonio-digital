@@ -10,7 +10,7 @@
         Background="{DynamicResource WindowBackgroundBrush}"
         WindowStartupLocation="CenterScreen" ShowInTaskbar="True" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight"
         FontFamily="{StaticResource Inter}"
-        Icon="/digipat.ico">
+        Icon="/digipat.ico" >
 
 
     <Window.Resources>

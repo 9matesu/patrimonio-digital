@@ -39,7 +39,13 @@
                   ColumnHeaderStyle="{StaticResource DarkDataGridHeader}"
                   RowStyle="{StaticResource DarkDataGridRow}"
                   Height="370"
-                      Background="{DynamicResource SidebarBackgroundBrush}">
+                  Background="{DynamicResource SidebarBackgroundBrush}"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserReorderColumns="False"
+                  CanUserResizeColumns="False"
+                  CanUserSortColumns="False">
                 
 
                 <DataGrid.Columns>

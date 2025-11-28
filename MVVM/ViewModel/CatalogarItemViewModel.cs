@@ -137,6 +137,7 @@ namespace patrimonio_digital.MVVM.ViewModel
                 };
 
                 Itens.Add(novo);
+                FecharCommand.Execute(JanelaAtual);
 
                 AuditoriaService.RegistrarAuditoria(new AuditoriaModel
                 {
@@ -177,7 +178,7 @@ namespace patrimonio_digital.MVVM.ViewModel
             EstadoConsNovoItem = string.Empty;
             SetorFisicoNovoItem = string.Empty;
 
-            FecharCommand.Execute(JanelaAtual);
+
 
             // ItemStorage.Salvar(Itens); - salva no armazenamento permanente após registrar, desabilitado
         }
