@@ -30,7 +30,7 @@ namespace patrimonio_digital
             }
             else
             {
-                MessageBox.Show("Login cancelado ou inválido. Aplicação será encerrada.");
+                // MessageBox.Show("Login cancelado ou inválido. Aplicação será encerrada.");//
                 Shutdown();
             }
         }

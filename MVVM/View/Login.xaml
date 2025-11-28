@@ -4,45 +4,46 @@
         Title="Login"
         Height="350" Width="350"
         WindowStartupLocation="CenterScreen"
-        FontFamily="{StaticResource Inter}">
+        FontFamily="{StaticResource Inter}"
+        Icon="/digipat.ico">
 
 	<Border Background="{StaticResource WindowBackgroundBrush}" CornerRadius="0" Padding="0" Margin="0">
-        
+
 		<StackPanel HorizontalAlignment="Center" Width="Auto" VerticalAlignment="Center" Margin="10">
-            
-            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Path Data="M6.69 2a1.75 1.75 0 00-1.75 1.756L5 21.253a.75.75 0 001.219.583L12 17.21l5.782 4.625A.75.75 0 0019 21.25V3.75A1.75 1.75 0 0017.25 2H6.69z"
-				Fill="{DynamicResource ForegroundBrush}"
-		         Stretch="Uniform"
-		         Width="50"
-		         Height="50"
-		         Margin="10"/>
-                <TextBlock Text="digiPat" FontSize="38" Foreground="{DynamicResource ForegroundBrush}" Margin="10" FontWeight="Bold" HorizontalAlignment="Center" />
-            </StackPanel>
-            
-            <TextBlock Text="Olá! Faça seu login" FontSize="12" Foreground="{DynamicResource ForegroundBrush}" Margin="10 10 10 25" FontWeight="Regular" HorizontalAlignment="Center" />
-            
-            <TextBox x:Name="txtNome"
-					 Height="30"
-					 Margin="0,0,0,10"
-					 Width="280"
-					 Style="{StaticResource TextBoxTheme}" />
+
+			<StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
+				<Path Data="M6.69 2a1.75 1.75 0 00-1.75 1.756L5 21.253a.75.75 0 001.219.583L12 17.21l5.782 4.625A.75.75 0 0019 21.25V3.75A1.75 1.75 0 0017.25 2H6.69z"
+                      Fill="{DynamicResource ForegroundBrush}"
+                      Stretch="Uniform"
+                      Width="50"
+                      Height="50"
+                      Margin="10"/>
+				<TextBlock Text="digiPat" FontSize="38" Foreground="{DynamicResource ForegroundBrush}" Margin="10" FontWeight="Bold" HorizontalAlignment="Center" />
+			</StackPanel>
+
+			<TextBlock Text="Olá! Faça seu login" FontSize="12" Foreground="{DynamicResource ForegroundBrush}" Margin="10 10 10 25" FontWeight="Regular" HorizontalAlignment="Center" />
+
+			<TextBox x:Name="txtNome"
+                     Height="30"
+                     Margin="0,0,0,10"
+                     Width="280"
+                     Style="{StaticResource TextBoxTheme}"
+                     Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" />
 
 			<PasswordBox x:Name="txtSenha"
-						 Height="30"
-						 Margin="0,0,0,20"
-						 Width="280"
-						 Style="{DynamicResource PasswordBoxTheme}"/>
+                         Height="30"
+                         Margin="0,0,0,20"
+                         Width="280"
+                         Style="{DynamicResource PasswordBoxTheme}"
+                         PasswordChanged="PasswordBox_PasswordChanged"/>
 
 			<Button Content="Entrar"
-					Width="100"
-					Height="30"
-					HorizontalAlignment="Center"
-					Click="Entrar_Click"
+                    Width="100"
+                    Height="30"
+                    HorizontalAlignment="Center"
+                    Command="{Binding EntrarCommand}"
                     IsDefault="True"
-					Style="{StaticResource EditorButtonTheme}" />
-                
-
-        </StackPanel>
+                    Style="{StaticResource EditorButtonTheme}" />
+		</StackPanel>
 	</Border>
 </Window>

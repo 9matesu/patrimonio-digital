@@ -7,42 +7,44 @@
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource WindowBackgroundBrush}"
         ResizeMode="NoResize"
-        FontFamily="{StaticResource Inter}" Icon="/digipat.ico">
+        FontFamily="{StaticResource Inter}"
+        Icon="/digipat.ico">
 
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="260">
-
-        <TextBlock Text="Cadastro de Usuário"
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="260">
+		<!-- resto igual ao anterior -->
+		<TextBlock Text="Cadastro de Usuário"
                    FontSize="20"
                    FontWeight="Bold"
                    Foreground="{DynamicResource ForegroundBrush}"
                    HorizontalAlignment="Center"
                    Margin="0,0,0,18" />
 
-        <TextBox x:Name="txtNome"
-                 Height="28"
+		<TextBox Height="28"
                  Margin="0,0,0,10"
                  Width="250"
-                 Style="{DynamicResource TextBoxTheme}" />
+                 Style="{DynamicResource TextBoxTheme}"
+                 Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
-        <PasswordBox x:Name="txtSenha"
+		<PasswordBox x:Name="txtSenha"
                      Height="28"
                      Margin="0,0,0,10"
                      Width="250"
-                     Style="{DynamicResource PasswordBoxTheme}" />
+                     Style="{DynamicResource PasswordBoxTheme}"
+                     PasswordChanged="TxtSenha_PasswordChanged" />
 
-        <ComboBox x:Name="cmbTipo"
-                  Height="28"
+		<ComboBox Height="28"
                   Margin="0,0,0,18"
                   Width="250"
-                  Style="{DynamicResource FlatComboBox}" />
+                  Style="{DynamicResource FlatComboBox}"
+                  ItemsSource="{Binding TiposUsuario}"
+                  SelectedItem="{Binding TipoSelecionado, Mode=TwoWay}" />
 
-        <Button Content="Salvar"
+		<Button Content="Salvar"
                 Width="120"
                 Height="32"
                 Margin="0,6,0,0"
                 HorizontalAlignment="Center"
-                Click="BtnSalvarUsuario_Click"
+                Command="{Binding SalvarCommand}"
                 Style="{DynamicResource EditorButtonTheme}" />
-
-    </StackPanel>
+	</StackPanel>
 </Window>

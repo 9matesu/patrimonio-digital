@@ -1,7 +1,6 @@
-﻿using patrimonio_digital.MVVM.Model;
-using patrimonio_digital.MVVM.View;
+﻿using System.Windows;
+using System.Windows.Controls;
 using patrimonio_digital.MVVM.ViewModel;
-using System.Windows;
 
 namespace patrimonio_digital.MVVM.View
 {
@@ -10,24 +9,14 @@ namespace patrimonio_digital.MVVM.View
         public Login()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel(this);
         }
 
-        private void Entrar_Click(object sender, RoutedEventArgs e)
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            var auth = new AuthService();
-            var usuario = auth.Login(txtNome.Text, txtSenha.Password);
-
-            if (usuario != null)
+            if (DataContext is LoginViewModel vm && sender is PasswordBox pb)
             {
-                var mainWindow = new MainWindow();
-                mainWindow.DataContext = new MainViewModel(usuario, usuario.Nome);
-                mainWindow.Show();
-
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Usuário ou senha inválidos.");
+                vm.Senha = pb.Password;
             }
         }
     }

@@ -1,4 +1,4 @@
-Ôªøusing patrimonio_digital.Core;
+using patrimonio_digital.Core;
 using patrimonio_digital.MVVM.Model;
 using patrimonio_digital.MVVM.View;
 using patrimonio_digital.Services;
@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace patrimonio_digital.MVVM.ViewModel
 {
-    public class UsuariosViewModel : ObservableObject
+    public class ListaUsuariosViewModel : ObservableObject
     {
         private readonly AuthService authService = new();
         private ObservableCollection<Usuario> usuarios = new();
@@ -39,7 +39,7 @@ namespace patrimonio_digital.MVVM.ViewModel
         public ICommand EditarUsuarioCommand { get; }
         public ICommand ExcluirUsuarioCommand { get; }
 
-        public UsuariosViewModel()
+        public ListaUsuariosViewModel()
         {
             CarregarUsuarios();
 
@@ -75,8 +75,8 @@ namespace patrimonio_digital.MVVM.ViewModel
             if (UsuarioSelecionado != null)
             {
                 var resultado = MessageBox.Show(
-                    $"Deseja realmente excluir o usu√°rio \"{UsuarioSelecionado.Nome}\"?",
-                    "Confirmar exclus√£o",
+                    $"Deseja realmente excluir o usu·rio \"{UsuarioSelecionado.Nome}\"?",
+                    "Confirmar exclus„o",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning);
 
