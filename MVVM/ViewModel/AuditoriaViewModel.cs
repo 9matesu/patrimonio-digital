@@ -11,13 +11,6 @@ namespace patrimonio_digital.MVVM.ViewModel
 {
     public class AuditoriaViewModel
     {
-        public ObservableCollection<AuditoriaModel> Registros { get; }
-
-        public AuditoriaViewModel()
-        {
-            Registros = new ObservableCollection<AuditoriaModel>(
-                AuditoriaService.ObterRegistros()
-            );
-        }
+        public ObservableCollection<AuditoriaModel> Registros => AuditoriaService.Registros;
     }
 }

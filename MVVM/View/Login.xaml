@@ -28,14 +28,16 @@
                      Margin="0,0,0,10"
                      Width="280"
                      Style="{StaticResource TextBoxTheme}"
-                     Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" />
+                     Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" 
+                     Tag="Usuário"/>
 
 			<PasswordBox x:Name="txtSenha"
                          Height="30"
                          Margin="0,0,0,20"
                          Width="280"
                          Style="{DynamicResource PasswordBoxTheme}"
-                         PasswordChanged="PasswordBox_PasswordChanged"/>
+                         PasswordChanged="PasswordBox_PasswordChanged"
+                         Tag="Senha"/>
 
 			<Button Content="Entrar"
                     Width="100"

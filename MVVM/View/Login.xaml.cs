@@ -6,6 +6,7 @@ namespace patrimonio_digital.MVVM.View
 {
     public partial class Login : Window
     {
+
         public Login()
         {
             InitializeComponent();

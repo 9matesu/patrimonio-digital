@@ -8,6 +8,7 @@
      <!-- cores padrão -->
     <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#132e39"/> <!-- 900 -->
     <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="#244755"/> <!-- 950 -->
+    <SolidColorBrush x:Key="LightSidebarBrush" Color="#275563"/>   <!-- 950 -->
     <SolidColorBrush x:Key="MainColorBrush" Color="#31a9be"/> <!-- 500 -->
     <SolidColorBrush x:Key="ForegroundBrush" Color="#f0fbfb"/> <!-- 50 -->
     <SolidColorBrush x:Key="SecondaryForegroundBrush" Color="#d8f3f5"/> <!-- 100 -->
@@ -32,10 +33,10 @@
         
     </Style>
 
-    <!-- tema textbox -->
+    <!-- tema textbox padrão -->
     <Style x:Key="TextBoxTheme"
-           TargetType="{x:Type TextBox}"
-           BasedOn="{StaticResource {x:Type TextBox}}">
+       TargetType="{x:Type TextBox}"
+       BasedOn="{StaticResource {x:Type TextBox}}">
 
         <Setter Property="Background" Value="{DynamicResource SidebarBackgroundBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
@@ -46,30 +47,57 @@
         <Setter Property="TextAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
 
+        <Setter Property="Tag" Value="" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
                     <Border x:Name="border"
-                            CornerRadius="12"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                        CornerRadius="12"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
 
-                        <ScrollViewer x:Name="PART_ContentHost"
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost"
                                       VerticalScrollBarVisibility="Hidden"
                                       HorizontalScrollBarVisibility="Hidden"/>
+
+                            <TextBlock x:Name="Hint"
+                                   Text="{TemplateBinding Tag}"
+                                   Margin="8,0,0,0"
+                                   Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"
+                                   Opacity="0.35"
+                                   Visibility="Collapsed"/>
+                        </Grid>
                     </Border>
+
                     <ControlTemplate.Triggers>
 
+                        <!-- Focus -->
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource MainColorBrush}"/>
+                            <Setter TargetName="border"
+                                Property="BorderBrush"
+                                Value="{DynamicResource MainColorBrush}"/>
                         </Trigger>
 
+                        <!-- Desabilitado -->
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="border" Property="Background" Value="{DynamicResource MainColorBrush}"/>
                             <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
                             <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
                         </Trigger>
+
+                        <!-- Watermark aparece quando Text está vazio -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                                <Condition Property="IsFocused" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Hint" Property="Visibility" Value="Visible"/>
+                        </MultiTrigger>
 
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -186,8 +214,7 @@
                                               ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                                               RecognizesAccessKey="True"/>
 
-                                <!-- ToggleButton: controla IsDropDownOpen -->
-                                <!-- Está por cima do canto direito; expandir Width para cobrir mais área se desejar -->
+       
                                 <ToggleButton x:Name="PART_Button"
                                   Width="36"
                                   HorizontalAlignment="Right"
@@ -206,7 +233,8 @@
                                           Width="10"
                                           Height="6"
                                           HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"/>
+                                          VerticalAlignment="Center"
+                                                Cursor="Hand"/>
                                                                     
                                             </Grid>
                                         </ControlTemplate>
@@ -258,7 +286,7 @@
 
     <!-- tema passwordbox -->
     <Style x:Key="PasswordBoxTheme"
-       TargetType="{x:Type PasswordBox}"
+       TargetType="PasswordBox"
        BasedOn="{StaticResource {x:Type PasswordBox}}">
 
         <Setter Property="Background" Value="{DynamicResource SidebarBackgroundBrush}"/>
@@ -269,38 +297,53 @@
         <Setter Property="CaretBrush" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
 
+        <!-- texto fixo do placeholder -->
+        <Setter Property="Tag" Value="Senha"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="PasswordBox">
+                    <Grid>
 
-                    <Border x:Name="border"
-                        CornerRadius="12"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <!-- Caixa -->
+                        <Border x:Name="border"
+                            CornerRadius="12"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
 
-                        <ScrollViewer x:Name="PART_ContentHost"
-                                  VerticalScrollBarVisibility="Hidden"
-                                  HorizontalScrollBarVisibility="Hidden"/>
-                    </Border>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                      VerticalScrollBarVisibility="Hidden"
+                                      HorizontalScrollBarVisibility="Hidden"/>
+                        </Border>
+
+                        <!-- Watermark fixo -->
+                        <TextBlock x:Name="Watermark"
+                               Text="{TemplateBinding Tag}"
+                               Padding="6,0"
+                               VerticalAlignment="Center"
+                               Foreground="{DynamicResource ForegroundBrush}"
+                               Opacity="0.35"
+                               IsHitTestVisible="False"/>
+                    </Grid>
 
                     <ControlTemplate.Triggers>
 
+                        <!-- foco: borda + esconder watermark -->
                         <Trigger Property="IsFocused" Value="True">
                             <Setter TargetName="border"
                                 Property="BorderBrush"
                                 Value="{DynamicResource MainColorBrush}"/>
+                            <Setter TargetName="Watermark"
+                                Property="Visibility"
+                                Value="Collapsed"/>
                         </Trigger>
 
+                        <!-- desabilitado -->
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="border"
-                                Property="Background"
-                                Value="{DynamicResource MainColorBrush}"/>
-                            <Setter TargetName="border"
-                                Property="BorderBrush"
-                                Value="{DynamicResource ForegroundBrush}"/>
-                            <Setter Property="Foreground"
-                                Value="{DynamicResource ForegroundBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource MainColorBrush}"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
                         </Trigger>
 
                     </ControlTemplate.Triggers>
@@ -322,13 +365,14 @@
         <Setter Property="HeadersVisibility" Value="Column" />
         <Setter Property="ColumnHeaderHeight" Value="40"/>
         <Setter Property="Padding" Value="10"/>
-        <!-- maior altura para separar header -->
         <Setter Property="RowHeight" Value="32" />
         <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource ForegroundBrush}" />
         <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource ForegroundBrush}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Padding" Value="0,4,0,0"/>
-        <!-- separação entre header e linhas -->
+        
+        
+
     </Style>
 
     <!-- DataGrid ColumnHeader -->
@@ -342,19 +386,20 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="8,4"/>
         <Setter Property="Cursor" Value="Hand"/>
+        
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#355d6b"/>
             </Trigger>
         </Style.Triggers>
     </Style>
-
+    
     <!-- DataGrid Row -->
     <Style TargetType="DataGridRow" x:Key="DarkDataGridRow">
         <Setter Property="Background" Value="{DynamicResource SidebarBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="Height" Value="32" />
+        <Setter Property="Height" Value="50" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
@@ -365,6 +410,30 @@
                 <Setter Property="Foreground" Value="#000000" />
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="IconButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <ContentPresenter/>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource MainColorBrush}"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 

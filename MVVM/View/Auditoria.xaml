@@ -28,13 +28,14 @@
            Width="15"
            Height="15"
            Margin="10"/>
-                <Label Foreground="White" FontSize="18" VerticalAlignment="Center" Content="Auditoria"></Label>
+                <Label Foreground="{DynamicResource ForegroundBrush}" FontSize="18" VerticalAlignment="Center" Content="Auditoria"></Label>
 
             </StackPanel>
             
             <Border Background="{DynamicResource WindowBackgroundBrush}" CornerRadius="12" Margin="10">
             
             <DataGrid ItemsSource="{Binding Registros}"
+                  Style="{DynamicResource DarkDataGrid}"
                   AutoGenerateColumns="False"
                   ColumnHeaderStyle="{StaticResource DarkDataGridHeader}"
                   RowStyle="{StaticResource DarkDataGridRow}"
@@ -49,13 +50,14 @@
                 
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Usuário" Binding="{Binding Usuario}" />
-                    <DataGridTextColumn Header="Ação" Binding="{Binding Acao}" />
-                    <DataGridTextColumn Header="Item" Binding="{Binding Item}" />
-                    <DataGridTextColumn Header="Data" Binding="{Binding DataHora}" />
+                    <DataGridTextColumn Header="Usuário" Binding="{Binding Usuario}" Width="*"/>
+                        <DataGridTextColumn Header="Ação" Binding="{Binding Acao}" Width="*"/>
+                        <DataGridTextColumn Header="Item" Binding="{Binding Item}" Width="*"/>
+                        <DataGridTextColumn Header="Data" Binding="{Binding DataHora}" Width="*" />
                 </DataGrid.Columns>
 
             </DataGrid>
+                
         </Border>
             
         </StackPanel>

@@ -41,7 +41,7 @@
                       Width="15"
                       Height="15"
                       Margin="10"/>
-                <Label Foreground="White" FontSize="18" VerticalAlignment="Center" Content="Registro de Itens"></Label>
+                <Label Foreground="{DynamicResource ForegroundBrush}" FontSize="18" VerticalAlignment="Center" Content="Registro de Itens"></Label>
                
             </StackPanel>
 

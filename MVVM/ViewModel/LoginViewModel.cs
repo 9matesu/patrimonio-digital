@@ -9,6 +9,7 @@ namespace patrimonio_digital.MVVM.ViewModel
 {
     public class LoginViewModel : ObservableObject
     {
+
         private readonly Window window;
         private readonly AuthService authService = new();
 
@@ -42,14 +43,14 @@ namespace patrimonio_digital.MVVM.ViewModel
             EntrarCommand = new RelayCommand(_ => Entrar(), _ => !string.IsNullOrWhiteSpace(Nome) && !string.IsNullOrWhiteSpace(Senha));
         }
 
-        private void Entrar()
+        public void Entrar()
         {
             var usuario = authService.Login(Nome, Senha);
 
             if (usuario != null)
             {
                 var mainWindow = new MainWindow();
-                mainWindow.DataContext = new MainViewModel(usuario, usuario.Nome); // ? CORRIGIDO
+                mainWindow.DataContext = new MainViewModel(usuario, usuario.Nome);
                 mainWindow.Show();
                 window.Close();
             }

@@ -23,7 +23,7 @@ Icon="/digipat.ico"
             Width="15"
             Height="15"
             Margin="10"/>
-            <Label Foreground="White" FontSize="18" VerticalAlignment="Center" Content="Gerenciar Usuários"></Label>
+            <Label Foreground="{DynamicResource ForegroundBrush}" FontSize="18" VerticalAlignment="Center" Content="Gerenciar Usuários"></Label>
 
         </StackPanel>
         
@@ -63,9 +63,9 @@ Icon="/digipat.ico"
                   Style="{StaticResource DarkDataGrid}"
                   RowStyle="{StaticResource DarkDataGridRow}"
                   ColumnHeaderStyle="{StaticResource DarkDataGridHeader}"
-                  AlternatingRowBackground="#203040"
+                  AlternatingRowBackground="{StaticResource WindowBackgroundBrush}"
                   FontSize="14"
-                  GridLinesVisibility="Horizontal">
+                  GridLinesVisibility="None">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="3*"/>
 				<DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}" Width="1.5*"/>

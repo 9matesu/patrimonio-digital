@@ -29,14 +29,57 @@
 		<DockPanel LastChildFill="True">
 
 			<!-- stackpanel usuário -->
-			<StackPanel DockPanel.Dock="Bottom" Margin="0" Orientation="Horizontal" Background="#275563">
+            
+            
+			<StackPanel DockPanel.Dock="Bottom" Margin="0" Orientation="Horizontal" Background="{DynamicResource LightSidebarBrush}">
                 <Path Data="M16.0603 18.307C14.89 19.0619 13.4962 19.5 12 19.5C10.5038 19.5 9.10996 19.0619 7.93972 18.307C8.66519 16.7938 10.2115 15.75 12 15.75C13.7886 15.75 15.3349 16.794 16.0603 18.307ZM17.2545 17.3516C16.2326 15.5027 14.2632 14.25 12 14.25C9.73663 14.25 7.76733 15.5029 6.74545 17.3516C5.3596 15.9907 4.5 14.0958 4.5 12C4.5 7.85786 7.85786 4.5 12 4.5C16.1421 4.5 19.5 7.85786 19.5 12C19.5 14.0958 18.6404 15.9908 17.2545 17.3516ZM21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12ZM12 12C13.2426 12 14.25 10.9926 14.25 9.75C14.25 8.50736 13.2426 7.5 12 7.5C10.7574 7.5 9.75 8.50736 9.75 9.75C9.75 10.9926 10.7574 12 12 12ZM12 13.5C14.0711 13.5 15.75 11.8211 15.75 9.75C15.75 7.67893 14.0711 6 12 6C9.92893 6 8.25 7.67893 8.25 9.75C8.25 11.8211 9.92893 13.5 12 13.5Z"
                       Fill="{DynamicResource ForegroundBrush}"
                       Stretch="Uniform"
                       Width="15"
                       Height="15"
                       Margin="10"/>
+                
                 <TextBlock Text="{Binding UsuarioLogado, StringFormat='Olá, {0}!'}" FontSize="15" Foreground="{DynamicResource ForegroundBrush}" Margin="0 6" FontWeight="Regular" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+                <DockPanel LastChildFill="True" Margin="50 0 0 0" Cursor="">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <!--botão mudar tema-->
+                         <Button
+                                 Style="{DynamicResource IconButton}"
+                                 BorderThickness="0"
+                                 Cursor="Hand"
+                                 Padding="0"
+                             Click="ToggleTheme_Click">
+                             
+                            <Path Data="M12.75 3V6.04642C13.8456 6.18303 14.8494 6.61501 15.6793 7.26016L17.8337 5.10571L18.8944 6.16637L16.7399 8.32083C17.385 9.15071 17.817 10.1545 17.9536 11.25H21V12.75H17.9536C17.817 13.8455 17.385 14.8494 16.7399 15.6793L18.8943 17.8337L17.8336 18.8944L15.6792 16.7399C14.8493 17.385 13.8455 17.817 12.75 17.9536V21H11.25V17.9536C10.1545 17.817 9.1507 17.385 8.32081 16.7399L6.16653 18.8943L5.10585 17.8336L7.26014 15.6793C6.61501 14.8494 6.18303 13.8456 6.04642 12.75H3V11.25H6.04642C6.18303 10.1545 6.61498 9.15069 7.26008 8.3208L5.10574 6.16647L6.1664 5.10581L8.32073 7.26014C9.15063 6.61501 10.1545 6.18303 11.25 6.04642V3H12.75ZM8.85065 8.78571C9.66228 7.99038 10.7739 7.5 12 7.5C14.4853 7.5 16.5 9.51472 16.5 12C16.5 13.2592 15.9828 14.3975 15.1493 15.2143L8.85065 8.78571Z"
+                                Fill="{DynamicResource ForegroundBrush}"
+                                Stretch="Uniform"
+                                Width="15"
+                                Height="15"
+                                Margin="10"/>
+                        </Button>
+
+                        <!--botão logout-->
+                        <Button
+                            Style="{DynamicResource IconButton}"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Padding="0"
+                            Command="{Binding LogoutCommand}" >
+                           
+                            <Path Data="M3.75 4.5H5.25V18.75H19.5V20.25H3.75V4.5ZM17.6515 8.25001L15.2196 5.81812L16.2803 4.75746L20.4851 8.96229L16.2803 13.1671L15.2196 12.1065L17.5761 9.75001L14.25 9.75C11.7647 9.75 9.75 11.7647 9.75 14.25V16.5H8.25V14.25C8.25 10.9363 10.9363 8.25 14.25 8.25L17.6515 8.25001Z"
+                               Fill="{DynamicResource ForegroundBrush}"
+                               Stretch="Uniform"
+                               Width="15"
+                               Height="15"
+                               Margin="10" />
+
+                        </Button>
+                        
+                    </StackPanel>
+                </DockPanel>
+
 
             </StackPanel>
 
@@ -63,7 +106,7 @@
                                 Width="15"
                                 Height="15"
                                 Margin="10 0 0 0"/>
-							<RadioButton x:Name="btnCatalogo" Command="{Binding AbrirJanelaCommand}" CommandParameter="Catalogar" Content= "Registrar Item" Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"
+							<RadioButton x:Name="btnCatalogo" Command="{Binding AbrirJanelaCommand}" CommandParameter="Catalogar" Content= "Registrar Item" Height="50" FontSize="14" Style="{DynamicResource MenuButtonTheme}"
                                          />
 						</StackPanel>
 
@@ -97,7 +140,7 @@
 										 Content="Auditoria"
 										 Height="50"
 										 FontSize="14"
-										 Style="{StaticResource MenuButtonTheme}"
+										 Style="{DynamicResource MenuButtonTheme}"
 										 />
 						</StackPanel>
 
@@ -108,7 +151,7 @@
                                   Width="15"
                                   Height="15"
                                   Margin="10 0 0 0"/>
-                            <RadioButton x:Name="btnSobre" Command="{Binding AbrirJanelaCommand}" CommandParameter="Sobre" Content= "Sobre" Height="50" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
+                            <RadioButton x:Name="btnSobre" Command="{Binding AbrirJanelaCommand}" CommandParameter="Sobre" Content= "Sobre" Height="50" FontSize="14" Style="{DynamicResource MenuButtonTheme}"/>
                         </StackPanel>
 
 
@@ -134,7 +177,8 @@
                          Style="{DynamicResource TextBoxTheme}"
                          Margin="0 0 0 10"
                          Height="35"
-                         Width="Auto"/>
+                         Width="Auto"
+                         Tag="Digite para pesquisar..."/>
 				</StackPanel>
 
                 <TextBlock Text="{Binding Itens.Count, StringFormat='{}{0} itens encontrados.'}"
@@ -174,25 +218,39 @@
 										</StackPanel>
 
 										<!-- stackpanel botões CRUD -->
-										<StackPanel Grid.Column="1" Orientation="Vertical">
+                                        <StackPanel Grid.Column="1" Orientation="Vertical">
 
-											<Button FontSize="25"
-                                                    Content="🗙"
+                                            <Button Style="{DynamicResource IconButton}"   
                                                     Command="{Binding DataContext.ExcluirItemCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                                     CommandParameter="{Binding}"
-                                                    BorderThickness="0"
-                                                    Background="Transparent"
                                                     Foreground="{DynamicResource SecondaryForegroundBrush}"
-                                                    Visibility="{Binding DataContext.PodeExcluir, RelativeSource={RelativeSource AncestorType=ItemsControl}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                                    Visibility="{Binding DataContext.PodeExcluir, RelativeSource={RelativeSource AncestorType=ItemsControl}, Converter={StaticResource BoolToVisibilityConverter}}"
+                                                    Cursor="Hand">
 
-											<Button FontSize="25"
-                                                    Content="🖉"
-                                                    Command="{Binding DataContext.AbrirEditorCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                <Path Data="M10.9393 12L6.9696 15.9697L8.03026 17.0304L12 13.0607L15.9697 17.0304L17.0304 15.9697L13.0607 12L17.0303 8.03039L15.9696 6.96973L12 10.9393L8.03038 6.96973L6.96972 8.03039L10.9393 12Z"
+                                                     Fill="{DynamicResource ForegroundBrush}"
+                                                     Stretch="Uniform"
+                                                     Width="15"
+                                                     Height="15"
+                                                     Margin="10"/>
+                                                
+                                            </Button>
+
+                                            <Button
+                                                    Command="{Binding DataContext.EditarItemCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                                     CommandParameter="{Binding}"
-                                                    BorderThickness="0"
-                                                    Background="Transparent"
                                                     Foreground="{DynamicResource SecondaryForegroundBrush}"
-                                                    Visibility="{Binding DataContext.PodeCatalogar, RelativeSource={RelativeSource AncestorType=ItemsControl}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                                    Visibility="{Binding DataContext.PodeCatalogar, RelativeSource={RelativeSource AncestorType=ItemsControl}, Converter={StaticResource BoolToVisibilityConverter}}"
+                                                    Style="{DynamicResource IconButton}"
+                                                    Cursor="Hand">
+
+                                                <Path Data="M8.56078 20.2501L20.5608 8.25011L15.7501 3.43945L3.75012 15.4395V20.2501H8.56078ZM15.7501 5.56077L18.4395 8.25011L16.5001 10.1895L13.8108 7.50013L15.7501 5.56077ZM12.7501 8.56079L15.4395 11.2501L7.93946 18.7501H5.25012L5.25012 16.0608L12.7501 8.56079Z"
+                                                      Fill="{DynamicResource ForegroundBrush}"
+                                                      Stretch="Uniform"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10" />
+                                            </Button>
 
 										</StackPanel>
 
@@ -202,6 +260,7 @@
 						</ItemsControl.ItemTemplate>
 					</ItemsControl>
 				</ScrollViewer>
+                
 			</StackPanel>
 
 		</Grid>

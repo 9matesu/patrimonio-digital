@@ -1,14 +1,22 @@
-﻿using System.Windows;
-using patrimonio_digital.MVVM.Model;
+﻿using patrimonio_digital.MVVM.Model;
 using patrimonio_digital.MVVM.View;
+using patrimonio_digital.Services;
+using System.Windows;
 
 namespace patrimonio_digital
 {
     public partial class App : Application
     {
-
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            AuditoriaService.CarregarAuditoria();
+            IniciarApp();
+
+        }
+       
+        public void IniciarApp()
+        {
+
             var loginWindow = new Login();
             bool? result = loginWindow.ShowDialog();
 
@@ -16,21 +24,17 @@ namespace patrimonio_digital
             {
                 try
                 {
-
                     var mainWindow = new MainWindow();
                     MainWindow = mainWindow;
                     mainWindow.Show();
-                    // MessageBox.Show("MainWindow abriu!"); //
                 }
-                catch (Exception ex)
+                catch
                 {
-                    // MessageBox.Show("Erro ao abrir a MainWindow: " + ex.Message); //
                     Shutdown();
                 }
             }
             else
             {
-                // MessageBox.Show("Login cancelado ou inválido. Aplicação será encerrada.");//
                 Shutdown();
             }
         }

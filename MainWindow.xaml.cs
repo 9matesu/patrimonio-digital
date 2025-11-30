@@ -1,5 +1,6 @@
 ﻿using patrimonio_digital.MVVM.Model;
 using patrimonio_digital.MVVM.View;
+using patrimonio_digital.Utils;
 using patrimonio_digital.MVVM.ViewModel;
 using System;
 using System.Windows;
@@ -31,22 +32,14 @@ namespace patrimonio_digital
                 vm.OnClose();
         }
 
+        private bool isDark = true;
 
-        private void ReplaceTheme(string path)
+        private void ToggleTheme_Click(object sender, RoutedEventArgs e)
         {
-            var rd = new ResourceDictionary() { Source = new Uri(path, UriKind.Relative) };
-            Application.Current.Resources.MergedDictionaries.Clear();
-            Application.Current.Resources.MergedDictionaries.Add(rd);
+            isDark = !isDark;
+            var theme = isDark ? "Theme/Dark.xaml" : "Theme/Light.xaml";
+            ThemeManager.ApplyTheme(theme);
         }
 
-        private void ThemeToggle_Checked(object sender, RoutedEventArgs e)
-        {
-            ReplaceTheme("Themes/Light.xaml");
-        }
-
-        private void ThemeToggle_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ReplaceTheme("Themes/Dark.xaml");
-        }
     }
 }

@@ -49,6 +49,7 @@ namespace patrimonio_digital.MVVM.ViewModel
             UsuarioLogadoBool.Tipo != TipoUsuario.Visitante;
 
         // declaração de interfaces de comando
+        public ICommand LogoutCommand { get; }
         public ICommand AbrirJanelaCommand { get; }
         public ICommand FecharJanelaCommand { get; }
         public ICommand ExcluirItemCommand { get; }
@@ -103,6 +104,7 @@ namespace patrimonio_digital.MVVM.ViewModel
             AbrirEditorCommand = new RelayCommand(AbrirEditor);
             EditarItemCommand = new RelayCommand(EditarItem);
             FecharJanelaCommand = new RelayCommand(FecharJanela);
+            LogoutCommand = new RelayCommand(Logout);
 
 
             // carrega do armazenamento permanente ao instanciar a tela principal
@@ -214,7 +216,17 @@ namespace patrimonio_digital.MVVM.ViewModel
                 };
 
                 janela.ShowDialog();
+
+                AuditoriaService.RegistrarAuditoria(new AuditoriaModel
+                {
+                    DataHora = DateTime.Now,
+                    Usuario = UsuarioLogado,
+                    Acao = "Edição de Item",
+                    Item = item.Nome,
+                });
             }
+
+
         }
 
         private void AbrirEditor(object parameter)
@@ -232,6 +244,24 @@ namespace patrimonio_digital.MVVM.ViewModel
                     visualizador.DataContext = new VisualizadorDocumentoViewModel(item);
                     visualizador.ShowDialog();
                 }
+            }
+        }
+
+        public void Logout(object obj)
+        {
+            var main = Application.Current.MainWindow;
+            main.Hide();
+
+            var login = new Login();
+            bool? result = login.ShowDialog();
+
+            if (result == true)
+            {
+                ((App)Application.Current).IniciarApp();
+            }
+            else
+            {
+                Application.Current.Shutdown();
             }
         }
 

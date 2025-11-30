@@ -23,7 +23,7 @@
           Width="15"
           Height="15"
           Margin="10"/>
-                <Label Foreground="White" FontSize="18" VerticalAlignment="Center" Content="Editor de Documento"></Label>
+                <Label Foreground="{DynamicResource ForegroundBrush}" FontSize="18" VerticalAlignment="Center" Content="Editor de Documento"></Label>
 
             </StackPanel>
 
@@ -33,7 +33,7 @@
             <Button Content="&gt;" Command="{Binding ProximaCommand}" Style="{StaticResource EditorButtonTheme}" Margin="2" Width="30"/>
             <Button Content="Salvar Tudo" Command="{Binding FecharCommand}" Style="{StaticResource EditorButtonTheme}" Margin="2"/>
 
-                <TextBlock Foreground="White"
+                <TextBlock Foreground="{DynamicResource ForegroundBrush}"
                 Text="{Binding PaginaAtual.Numero}"
                 VerticalAlignment="Center"
                            HorizontalAlignment="Right"
